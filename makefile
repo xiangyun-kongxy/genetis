@@ -13,9 +13,9 @@ include modules.mk
 build: third_part/lib/libleveldb.a $(libraries) $(binaries)
 
 third_part/lib/libleveldb.a: third_part/lib
-	cd third_part/leveldb; make out-static/libleveldb.a; cd ../..
+	make out-static/libleveldb.a -C ./third_part/leveldb
 	cp third_part/leveldb/out-static/libleveldb.a third_part/lib/
-	cd third_part/leveldb; make clean; cd ../..
+	make clean -C ./third_part/leveldb
 
 third_part/lib:
 	@mkdir -p third_part/lib
