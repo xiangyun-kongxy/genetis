@@ -1,0 +1,7 @@
+#include "base.bsp"
+
+(set, define, set, type)
+(rfunc, define, rfunc, type)
+(cfunc, define, cfunc, type)
+(relation, define, relation, type)
+
