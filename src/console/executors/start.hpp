@@ -12,6 +12,7 @@
 #include <console/terminal.hpp>
 
 #include <lib/init/initializer.hpp>
+#include <lib/identifier/id_name.hpp>
 
 #include <ps/ps.hpp>
 #include <bus/bus.hpp>

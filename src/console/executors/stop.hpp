@@ -12,12 +12,16 @@
 #include <console/terminal.hpp>
 
 #include <lib/init/initializer.hpp>
+#include <lib/identifier/id_name.hpp>
+
+#include <plugin/manager/plugin_manager.hpp>
 
 #include <log.hpp>
 #include <ipc.hpp>
 #include <messages.hpp>
 
 #include <sys/signal.h>
+#include <unistd.h>
 
 namespace pf {
     
