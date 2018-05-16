@@ -54,7 +54,7 @@ executors_var := $(patsubst %,$(objout)/b-%.mk, $(executors))
 binaries := $(patsubst %,$(binout)/%, $(executors))
 
 sinclude $(modules_var)
-include $(executors_var)
+sinclude $(executors_var)
 sinclude $(dep)
 
 $(objout)/b-%.mk: 
@@ -62,7 +62,7 @@ $(objout)/b-%.mk:
 	@echo '$(patsubst $(objout)/b-%.mk,%, $@)_src := $$(shell find $($(patsubst $(objout)/b-%.mk,%_path, $@)) -name "*.cpp")' > $@
 	@echo '$(patsubst $(objout)/b-%.mk,%, $@)_obj := $$(patsubst %.cpp, $$(objout)/%.o, $$($(patsubst $(objout)/b-%.mk,%_src, $@)))' >> $@
 	@echo '$(patsubst $(objout)/b-%.mk,%, $@)_dep_build := $$(patsubst -l%, $$(libout)/lib%.dylib, $$($(patsubst $(objout)/b-%.mk,%_dep, $@)))' >> $@
-	@echo 'dep := $$(dep) $$(patsubst%.cpp, $$(objout)/%.d, $$($(patsubst $(objout)/b-%.mk,%, $@)_src))' >> $@
+	@echo 'dep := $$(dep) $$(patsubst %.cpp, $$(objout)/%.d, $$($(patsubst $(objout)/b-%.mk,%, $@)_src))' >> $@
 	@echo '$$(binout)/$(patsubst $(objout)/b-%.mk,%, $@): $$($(patsubst $(objout)/b-%.mk,%, $@)_dep_build) $$($(patsubst $(objout)/b-%.mk,%, $@)_obj)' >> $@
 	@echo '\t$$(CC) $$(LDFLAGS) $$($(patsubst $(objout)/b-%.mk,%, $@)_dep) $$($(patsubst $(objout)/b-%.mk,%, $@)_dep_third) -o $$(binout)/$(patsubst $(objout)/b-%.mk,%, $@) $$($(patsubst $(objout)/b-%.mk,%, $@)_obj)' >> $@
 	@find $($(patsubst $(objout)/b-%.mk,%_path, $@)) -type d -exec mkdir -p $(objout)/{} \;
@@ -72,13 +72,13 @@ $(objout)/m-%.mk:
 	@echo '$(patsubst $(objout)/m-%.mk,%, $@)_src := $$(shell find $($(patsubst $(objout)/m-%.mk,%_path, $@)) -name "*.cpp")' > $@
 	@echo '$(patsubst $(objout)/m-%.mk,%, $@)_obj := $$(patsubst %.cpp, $$(objout)/%.o, $$($(patsubst $(objout)/m-%.mk,%_src, $@)))' >> $@
 	@echo '$(patsubst $(objout)/m-%.mk,%, $@)_dep_build := $$(patsubst -l%, $$(libout)/lib%.dylib, $$($(patsubst $(objout)/m-%.mk,%_dep, $@)))' >> $@
-	@echo 'dep := $$(dep) $$(patsubst%.cpp, $$(objout)/%.d, $$($(patsubst $(objout)/m-%.mk,%, $@)_src))' >> $@
+	@echo 'dep := $$(dep) $$(patsubst %.cpp, $$(objout)/%.d, $$($(patsubst $(objout)/m-%.mk,%, $@)_src))' >> $@
 	@echo '$$(libout)/lib$(patsubst $(objout)/m-%.mk,%, $@).dylib: $$($(patsubst $(objout)/m-%.mk,%, $@)_dep_build) $$($(patsubst $(objout)/m-%.mk,%, $@)_obj)' >> $@
 	@echo '\t$$(CC) -shared -fPIC $$(LDFLAGS) $$($(patsubst $(objout)/m-%.mk,%, $@)_dep) $$($(patsubst $(objout)/m-%.mk,%, $@)_dep_third) -o $$(libout)/lib$(patsubst $(objout)/m-%.mk,%, $@).dylib $$($(patsubst $(objout)/m-%.mk,%, $@)_obj)' >> $@
 	@find $($(patsubst $(objout)/m-%.mk,%_path, $@)) -type d -exec mkdir -p $(objout)/{} \;
 	
 $(objout)/%.d : %.cpp
-	$(CC) -MT"$(objout)/$(<:.cpp=.o)" -MM $(CXXFLAGS) $(CPPFLAGS) $< > $@
+	$(CC) -MT"$(objout)/$(<:.cpp=.o) $(objout)/$(<:.cpp=.d)" -MM $(CXXFLAGS) $(CPPFLAGS) $< > $@
 
 $(objout)/%.o : %.cpp
 	$(CC) -c $(CXXFLAGS) -o $@ $<
