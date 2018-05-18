@@ -38,7 +38,7 @@ namespace kxy {
         }
 
     public:
-        ptr<object> event() const {
+        ptr<object> org_event() const {
             return m_evt;
         }
 

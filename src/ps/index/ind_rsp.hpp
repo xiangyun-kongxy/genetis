@@ -60,7 +60,7 @@ namespace pf {
             
             m_mutex.lock();
 
-            m_registed[id_rsp->event()] = pair<long, fcallback>(slot, nullptr);
+            m_registed[id_rsp->org_event()] = pair<long, fcallback>(slot, nullptr);
 
             m_mutex.unlock();
         }
@@ -70,7 +70,7 @@ namespace pf {
             
             m_mutex.lock();
 
-            m_registed[id_rsp->event()] = pair<long, fcallback>(-1, callback);
+            m_registed[id_rsp->org_event()] = pair<long, fcallback>(-1, callback);
 
             m_mutex.unlock();
         }

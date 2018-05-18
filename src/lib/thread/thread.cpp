@@ -10,8 +10,9 @@
 
 #include "thread.hpp"
 
-#include <pthread/pthread.h>
+#include <pthread.h>
 #include <unistd.h>
+#include <fcntl.h>
 
 #include <lib/convert/type_convert.hpp>
 
@@ -40,7 +41,7 @@ namespace kxy {
                 sem_wait(obj->m_status_changing);
             }
         }
-        return obj->m_thread = nullptr;
+        return (void*)obj->m_thread;
     }
     
     long thread::pause() {
@@ -96,10 +97,10 @@ namespace kxy {
     }
 
     void thread::kill_thread() {
-        if (m_thread != nullptr) {
+        if (m_thread != 0) {
             change_status(stopping);
             wait_status();
-            m_thread = nullptr;
+            m_thread = 0;
         }
     }
 

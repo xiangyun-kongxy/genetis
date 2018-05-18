@@ -11,6 +11,7 @@
 #include <lib/init/initializer.hpp>
 
 #include <iostream>
+#include <functional>
 
 using namespace std;
 using namespace kxy;

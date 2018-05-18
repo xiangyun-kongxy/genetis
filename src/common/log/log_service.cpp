@@ -7,6 +7,7 @@
 //
 
 #include <stdio.h>
+#include <string.h>
 
 #include <lib/init/initializer.hpp>
 

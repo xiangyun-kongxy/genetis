@@ -66,7 +66,7 @@ namespace kxy {
             return result;
         }
 
-        ty front() const {
+        ty front() {
             ty result;
             m_mutex.lock();
             if (m_container.size() > 0) {

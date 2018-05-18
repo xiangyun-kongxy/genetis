@@ -14,6 +14,7 @@
 
 #include <string>
 #include <list>
+#include <string.h>
 
 using namespace std;
 

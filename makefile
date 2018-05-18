@@ -2,8 +2,17 @@ objout :=build
 libout :=bin
 binout :=bin
 
-CXXFLAGS = -std=c++11 -g -Werror -D_DEBUG -DDEBUG -Ithird_part/leveldb/include -Ithird_part/xml -Isrc -Isrc/include
-LDFLAGS = -Lthird_part/bin -L$(libout) -L/opt/local/lib -lstdc++
+ifeq ($(shell uname), Linux)
+    libext :=so
+else 
+    ifeq ($(shell uname), Darwin)
+        libext :=dylib
+    endif
+endif
+
+CXXFLAGS = -std=c++11 -fPIC -g -O2 -D_DEBUG -DDEBUG -Ithird_part/leveldb/include -Ithird_part/xml -Isrc -Isrc/include
+LDFLAGS = -fPIC -Lthird_part/bin -L$(libout) -lstdc++ -lpthread -luuid -ldl
+CC = gcc
 
 .PHONY: all build clean clean_leveldb
 all: build

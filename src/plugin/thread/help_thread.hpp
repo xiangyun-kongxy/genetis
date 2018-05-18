@@ -66,11 +66,11 @@ namespace pf {
             ci = (thread_context_info*) pthread_getspecific(*m_thread_context);
             if (ci == nullptr) {
                 ci = new thread_context_info;
-                ci->plugin = nullptr;
+                ci->plg = nullptr;
                 ci->task = nullptr;
                 pthread_setspecific(*m_thread_context, ci);
             }
-            ci->plugin = m_cur_owner;
+            ci->plg = m_cur_owner;
             ci->task = m_cur_task;
 
             if (m_cur_task != nullptr) {

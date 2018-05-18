@@ -122,7 +122,7 @@ namespace pf {
         ci = (thread_context_info*) pthread_getspecific(m_thread_context_key);
 
         if (ci != nullptr) {
-            return ci->plugin;
+            return ci->plg;
         } else {
             return nullptr;
         }

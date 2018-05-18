@@ -41,7 +41,6 @@ namespace pf {
         void suspend_function(ptr<function> func);
 
     private:
-        
         struct function_info {
             ptr<function> func;
             bool is_active;
@@ -56,6 +55,20 @@ namespace pf {
                 return id->match(func);
             }
         };
+
+        typedef typename list<function_info>::iterator liit;
+
+        template<class ty>
+        liit find(liit begin, liit end, ty cmp) {
+            liit cur = begin;
+            while (cur != end) {
+                if (*cur == cmp)
+                    break;
+            }
+            return cur;
+        }
+
+    private:
         
         list<function_info> m_functions;
         

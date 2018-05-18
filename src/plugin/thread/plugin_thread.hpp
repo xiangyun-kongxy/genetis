@@ -28,7 +28,7 @@ using namespace kxy;
 namespace pf {
 
     struct thread_context_info {
-        ptr<plugin> plugin;
+        ptr<plugin> plg;
         ptr<event> task;
     };
 
@@ -64,7 +64,7 @@ namespace pf {
             ci = (thread_context_info*) pthread_getspecific(*m_thread_context);
             if (ci == nullptr) {
                 ci = new thread_context_info;
-                ci->plugin = m_owner;
+                ci->plg = m_owner;
                 ci->task = nullptr;
                 pthread_setspecific(*m_thread_context, ci);
             }

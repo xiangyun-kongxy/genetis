@@ -10,6 +10,7 @@
 #define basic_type_convert_h
 
 #include <string>
+#include <string.h>
 
 using namespace std;
 

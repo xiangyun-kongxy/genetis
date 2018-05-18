@@ -15,7 +15,12 @@
 #include <lib/object/ptr.hpp>
 #include <lib/container/cqueue.hpp>
 
-#include <sys/semaphore.h>
+#ifdef __APPLE__
+#   include <sys/semaphore.h>
+#else
+#   include <semaphore.h>
+#endif
+
 #include <iostream>
 
 using namespace kxy;
