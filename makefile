@@ -10,20 +10,20 @@ else
     endif
 endif
 
-CXXFLAGS = -std=c++11 -fPIC -g -O2 -D_DEBUG -DDEBUG -Ithird_part/leveldb/include -Ithird_part/xml -Isrc -Isrc/include
-LDFLAGS = -fPIC -Lthird_part/bin -L$(libout) -lstdc++ -lpthread -luuid -ldl
-CC = gcc
+CXXFLAGS = -std=c++11 -fPIC -fno-rtti -g -O2 -D_DEBUG -DDEBUG -Ithird_part/leveldb/include -Ithird_part/xml -Isrc -Isrc/include -I/usr/local/include/c++/6.4.0
+LDFLAGS = -fPIC -Lthird_part/bin -L$(libout) -L/usr/local/lib64 -lstdc++ -lpthread -luuid -ldl
+CC = g++
 
 .PHONY: all build clean clean_leveldb
 all: build
 
 include modules.mk
 
-build: third_part/bin/libleveldb.a $(libraries) $(binaries)
+build: third_part/bin/libleveldb.$(libext) $(libraries) $(binaries)
 
-third_part/bin/libleveldb.a: third_part/bin
-	make out-static/libleveldb.a -C ./third_part/leveldb
-	cp third_part/leveldb/out-static/libleveldb.a third_part/bin/
+third_part/bin/libleveldb.$(libext): third_part/bin
+	make -C ./third_part/leveldb
+	cp third_part/leveldb/out-shared/libleveldb.$(libext) third_part/bin/
 	make clean -C ./third_part/leveldb
 
 third_part/bin:

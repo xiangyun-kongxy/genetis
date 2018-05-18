@@ -1,8 +1,6 @@
 executors := console
 console_path := src/console
-console_dep := -lplugin -lcommon -llib -lbus -llifecycle -lipc -lps -lattestor \
-	-lheartbeat -llearning -lmemory -lspl -lbarren -lid_service -ltimer \
-	-lbarren_cache -lconfig_center -lplugin_controller -lgower -lexecutor
+console_dep := -lplugin -lcommon -llib -lbus -llifecycle -lipc -lps
 console_dep_third := -lleveldb
 
 modules := plugin common lib bus lifecycle ipc ps attestor heartbeat learning \
