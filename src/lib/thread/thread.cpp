@@ -20,10 +20,16 @@ namespace kxy {
     
     thread::thread() {
         change_status(pending);
+        long flag;
+#ifdef __APPLE__
+        flag = O_CREAT;
+#else
+        flag = O_EXCL | O_CREAT;
+#endif
         m_status_changing = sem_open((l2s((long)this) + ".changing").c_str(),
-                                     O_CREAT, 0644, 0);
+                                     flag, 0644, 0);
         m_status_changed = sem_open((l2s((long)this) + ".changed").c_str(),
-                                    O_CREAT, 0644, 0);
+                                    flag, 0644, 0);
         pthread_create(&m_thread, nullptr, thread::thread_func, this);
     }
     

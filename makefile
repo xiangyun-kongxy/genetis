@@ -27,7 +27,7 @@ build: third_part/bin/libleveldb.$(libext) $(libraries) $(binaries)
 
 third_part/bin/libleveldb.$(libext): third_part/bin
 	make -C ./third_part/leveldb
-	cp third_part/leveldb/out-shared/libleveldb.$(libext) third_part/bin/
+	cp third_part/leveldb/out-shared/libleveldb.* third_part/bin/
 	make clean -C ./third_part/leveldb
 
 third_part/bin:
