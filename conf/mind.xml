@@ -1,0 +1,26 @@
+<plugins>
+    <plugin name="barren cache"
+            lib_path="libbarren_cache.dylib"
+            init_func="init_barren_cache"/>
+    <plugin name="id service"
+            lib_path="libid_service.dylib"
+            init_func="init_id_service">
+        <parameter cur_guid="10000056000"/>
+    </plugin>
+    
+    <plugin name="barren memory"
+            lib_path="libmemory.dylib"
+            init_func="init_memory"/>
+    
+    <plugin name="config center"
+            lib_path="libconfig_center.dylib"
+            init_func="init_config_center"/>
+            
+    <plugin name="plugin controller"
+            lib_path="libplugin_controller.dylib"
+            init_func="init_plugin_controller"/>
+    
+    <plugin name="heartbeat"
+            lib_path="libheartbeat.dylib"
+            init_func="init_heartbeat"/>
+</plugins>
