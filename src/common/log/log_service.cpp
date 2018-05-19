@@ -36,6 +36,7 @@ namespace kxy {
         logs::set_logger("info", stdout, CUR_LOG_LEVEL);
         logs::set_logger("warn", stdout, CUR_LOG_LEVEL);
         logs::set_logger("error", stdout, CUR_LOG_LEVEL);
+        logs::set_logger("bus", stdout, CUR_LOG_LEVEL);
 #else
         pf = fopen("/mind/log/debug.log", "a");
         logs::set_logger("debug", pf, CUR_LOG_LEVEL);
@@ -48,9 +49,10 @@ namespace kxy {
         
         pf = fopen("/mind/log/error.log", "a");
         logs::set_logger("error", pf, CUR_LOG_LEVEL);
-#endif
+
         pf = fopen("/mind/log/bus.log", "a");
         logs::set_logger("bus", pf, CUR_LOG_LEVEL);
+#endif
         
         register_uninitializer("uninitialize logstores", __uninit_log_stores);
     }

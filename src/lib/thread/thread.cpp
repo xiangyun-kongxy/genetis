@@ -10,6 +10,10 @@
 
 #include "thread.hpp"
 
+#include <string>
+
+using namespace std;
+
 #include <pthread.h>
 #include <unistd.h>
 #include <fcntl.h>
@@ -19,17 +23,12 @@
 namespace kxy {
     
     thread::thread() {
+        string name;
+        name = l2s((long)this) + ".changing";
+        m_status_changing = sem_open(name.c_str(), O_CREAT, 0644, 0);
+        name = l2s((long)this) + ".changed";
+        m_status_changed = sem_open(name.c_str(), O_CREAT, 0644, 0);
         change_status(pending);
-        long flag;
-#ifdef __APPLE__
-        flag = O_CREAT;
-#else
-        flag = O_EXCL | O_CREAT;
-#endif
-        m_status_changing = sem_open((l2s((long)this) + ".changing").c_str(),
-                                     flag, 0644, 0);
-        m_status_changed = sem_open((l2s((long)this) + ".changed").c_str(),
-                                    flag, 0644, 0);
         pthread_create(&m_thread, nullptr, thread::thread_func, this);
     }
     

@@ -14,8 +14,8 @@ uselibpath :=
 endif
 endif
 
-CXXFLAGS = -std=c++11 -fPIC -fno-rtti -g -O2 -D_DEBUG -DDEBUG -Ithird_part/leveldb/include -Ithird_part/xml -Isrc -Isrc/include -I/usr/local/include/c++/6.4.0
-LDFLAGS = -fPIC -Lthird_part/bin -L$(libout) $(uselibpath) $(uselib) -lstdc++
+CXXFLAGS = -std=c++11 -fPIC -g -O2 -D_DEBUG -DDEBUG -Ithird_part/leveldb/include -Ithird_part/xml -Isrc -Isrc/include -I/usr/local/include/c++/6.4.0
+LDFLAGS = -fPIC -pthread -Lthird_part/bin -L$(libout) $(uselibpath) $(uselib) -lstdc++
 CC = g++
 
 .PHONY: all build clean clean_leveldb

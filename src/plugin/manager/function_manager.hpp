@@ -64,6 +64,7 @@ namespace pf {
             while (cur != end) {
                 if (*cur == cmp)
                     break;
+                ++cur;
             }
             return cur;
         }
