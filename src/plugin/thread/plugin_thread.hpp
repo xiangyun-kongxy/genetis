@@ -48,6 +48,8 @@ namespace pf {
             m_cur_task = m_pool->pop();
             if (m_cur_task != nullptr)
                 do_task();
+            else
+                usleep(10);
             return nullptr;
         }
 

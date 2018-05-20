@@ -16,6 +16,10 @@
 #include <lib/object/object.hpp>
 #include <lib/lock/spinlock.hpp>
 
+#ifdef OS_MACOSX
+#include <lib/lock/sem_osx.hpp>
+#endif
+
 using namespace std;
 
 namespace kxy {

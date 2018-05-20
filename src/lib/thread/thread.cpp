@@ -21,6 +21,10 @@ using namespace std;
 
 #include <lib/convert/type_convert.hpp>
 
+#ifdef OS_MACOSX
+#include <lib/lock/sem_osx.hpp>
+#endif
+
 namespace kxy {
 
     pthread_key_t thread::m_context_info;

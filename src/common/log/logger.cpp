@@ -150,7 +150,11 @@ namespace kxy {
         
         char log_buf[MAX_LOG_LINE_SIZE + 1] = "";
         snprintf(log_buf, MAX_LOG_LINE_SIZE,
+#ifdef OS_MACOSX
+                 "[%5s][%s %06d][%016lx][%-16s][%-20s]%s\n",
+#else
                  "[%5s][%s %06ld][%016lx][%-16s][%-20s]%s\n",
+#endif
                  level_mapping[level], tb, tv.tv_usec, (long)thread,
                  plugin_name.c_str(), task_name.c_str(), msg.c_str());
         

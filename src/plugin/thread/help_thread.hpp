@@ -46,6 +46,8 @@ namespace pf {
         virtual void* run_once() override {
             if (get_task())
                 do_task();
+            else
+                usleep(10);
             return nullptr;
         }
 
