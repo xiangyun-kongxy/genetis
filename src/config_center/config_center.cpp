@@ -15,7 +15,7 @@
 
 namespace kxy {
     
-    const string config_center::m_service = "config_service/";
+    const string config_center::m_service = "config_service.";
     
     config_center::config_center() {
         m_executors[M_GET_CONFIG] = new get_config;

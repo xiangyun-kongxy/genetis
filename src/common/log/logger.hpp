@@ -50,7 +50,7 @@ namespace kxy {
         
     protected:
         void _log(const timeval& tv, pthread_t thread, log_level level,
-                  const char* plugin_name, const char* task_name,
+                  const string& plugin_name, const string& task_name,
                   const string& msg);
         static void* _commit_log(void*);
         

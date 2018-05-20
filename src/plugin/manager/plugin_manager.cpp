@@ -9,6 +9,7 @@
 #include "plugin_manager.hpp"
 #include "function_manager.hpp"
 #include "dependence_manager.hpp"
+#include "thread_manager.hpp"
 
 #include <lib/init/initializer.hpp>
 
@@ -20,7 +21,19 @@ using namespace kxy;
 namespace pf {
 
     recursive_mutex g_plugin_managing_mutex;
-    plugin_manager* plugin_manager::g_plugin_manager = new plugin_manager;
+    plugin_manager* plugin_manager::g_plugin_manager = nullptr;
+
+    void plugin_manager::init() {
+        static bool inited = false;
+        if (!inited) {
+            function_manager::g_function_manager = new function_manager;
+            dependence_manager::g_dependence_manager = new dependence_manager;
+            plugin_manager::g_plugin_manager = new plugin_manager;
+            thread_manager::g_thread_manager = new thread_manager;
+
+            inited = true;
+        }
+    }
 
     plugin_manager* plugin_manager::instance() {
         return g_plugin_manager;

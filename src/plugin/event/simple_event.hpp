@@ -29,7 +29,7 @@ namespace pf {
         virtual ptr<serializable> param() const override ;
 
     public:
-        string name() const override {
+        virtual string name() const override {
             return m_event_name;
         }
         

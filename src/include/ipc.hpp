@@ -83,11 +83,11 @@ namespace pf {
     }
     
     template<typename ...ptype>
-    void broadcast(const string& event, ptype... params) {
+    void broadcast(const string& name, ptype... params) {
         ptr<class event> evt;
         ptr<serializable> param = new serializable;
         pack_data(param, params...);
-        evt = new simple_event(event, param);
+        evt = new simple_event(name, param);
         send(evt);
     }
 }

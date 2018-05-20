@@ -1,11 +1,11 @@
 executors := console
 console_path := src/console
 console_dep := -lplugin -lcommon -llib -lbus -llifecycle -lipc -lps
-console_dep_third := -lleveldb
 
 modules := plugin common lib bus lifecycle ipc ps attestor heartbeat learning \
 	memory spl barren id_service timer barren_cache config_center \
-	plugin_controller gower executor
+	plugin_controller gower executor leveldb
+leveldb_path := third_part/leveldb
 plugin_controller_path := src/plugin_controller
 plugin_controller_dep := -lplugin -llib -lcommon
 gower_path := src/gower
@@ -43,7 +43,7 @@ common_dep := -llib -lplugin
 bus_path := src/bus
 bus_dep := -lcommon -lplugin
 lib_path := src/lib
-lib_dep_third := -lleveldb
+lib_dep := -lleveldb
 plugin_path = src/plugin
 plugin_dep := -llib
 

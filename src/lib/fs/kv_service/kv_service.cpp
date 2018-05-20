@@ -42,7 +42,7 @@ namespace kxy {
         opt.create_if_missing = true;
         Status status = DB::Open(opt, g_kv_data_path + "/" + m_name, &m_db);
         if (!status.ok()) {
-            cout << "leveldb: " << status.ToString() << endl;
+            cout << "open leveldb (" << name << "):" << status.ToString() << endl;
         }
     }
     
@@ -59,7 +59,7 @@ namespace kxy {
         if (m_db != nullptr) {
             Status status = m_db->Get(m_ropt, key, &config);
             if (!status.ok()) {
-                cout << "leveldb: " << status.ToString() << endl;
+                cout << "read leveldb " << m_name << "." << key << ": " << status.ToString() << endl;
             }
         }
         return config;
@@ -69,7 +69,7 @@ namespace kxy {
         if (m_db != nullptr) {
             Status status = m_db->Put(m_wopt, key, value);
             if (!status.ok()) {
-                cout << "leveldb: " << status.ToString() << endl;
+                cout << "write leveldb " << m_name << "." << key << ": " << status.ToString() << endl;
             }
         }
     }

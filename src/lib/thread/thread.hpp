@@ -42,6 +42,8 @@ namespace kxy {
     public:
         virtual pthread_t thread_id() const;
         thread_status status();
+        static void* get_thread_attr(const string& key);
+        static void* set_thread_attr(const string& key, void* value);
 
     private:
         static void* thread_func(void *);
@@ -54,6 +56,9 @@ namespace kxy {
         
     public:
         virtual void* run_once() = 0;
+
+    public:
+        static pthread_key_t m_context_info;
 
     protected:
         atomic_long m_status;

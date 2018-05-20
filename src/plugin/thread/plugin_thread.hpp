@@ -27,23 +27,15 @@ using namespace kxy;
 
 namespace pf {
 
-    struct thread_context_info {
-        ptr<plugin> plg;
-        ptr<event> task;
-    };
-
-
     class plugin_thread : public thread {
     public:
         DECLARE_TYPE(thread, OBJ_PLUGIN_THREAD);
 
     public:
-        plugin_thread(ptr<cqueue<ptr<object>>> pool, ptr<plugin> owner,
-                      pthread_key_t* thread_context_key) {
+        plugin_thread(ptr<cqueue<ptr<object>>> pool, ptr<plugin> owner) {
             m_owner = owner;
             m_pool = pool;
             m_cur_task = nullptr;
-            m_thread_context = thread_context_key;
         }
 
         virtual ~plugin_thread() {
@@ -54,29 +46,9 @@ namespace pf {
     public:
         virtual void* run_once() override {
             m_cur_task = m_pool->pop();
-            if (m_cur_task == nullptr)
-                return nullptr;
-
-            thread_context_info* ci;
-            ci = (thread_context_info*) pthread_getspecific(*m_thread_context);
-            if (ci == nullptr) {
-                ci = new thread_context_info;
-                ci->plg = m_owner;
-                ci->task = nullptr;
-                pthread_setspecific(*m_thread_context, ci);
-            }
-            ci->task = m_cur_task;
-
-            if(m_cur_task == nullptr) {
-                usleep(12);
-            } else {
-                ptr<response> rsp = m_owner->do_task(m_cur_task);
-                if (rsp != nullptr) {
-                    extern ptr<plugin> g_ps;
-                    g_ps->tasks()->push(rsp);
-                }
-            }
-            return 0;
+            if (m_cur_task != nullptr)
+                do_task();
+            return nullptr;
         }
 
         ptr<cqueue<ptr<object>>> pool() const {
@@ -92,10 +64,30 @@ namespace pf {
         }
 
     protected:
+        void update_thread_task() {
+            void *old;
+            old = set_thread_attr("current_plugin", &m_owner);
+            if (old != nullptr)
+                ptr<plugin> old_plugin = *(ptr<plugin>*)old;
+            old = set_thread_attr("current_task", &m_cur_task);
+            if (old != nullptr)
+                ptr<event> old_task = *(ptr<event>*)old;
+        }
+
+        void do_task() {
+            update_thread_task();
+
+            ptr<response> rsp = m_owner->do_task(m_cur_task);
+            if (rsp != nullptr) {
+                extern ptr<plugin> g_ps;
+                g_ps->tasks()->push(rsp);
+            }
+        }
+
+    protected:
         ptr<cqueue<ptr<object>>> m_pool;
         ptr<plugin> m_owner;
         ptr<event> m_cur_task;
-        pthread_key_t* m_thread_context;
     };
 
 }

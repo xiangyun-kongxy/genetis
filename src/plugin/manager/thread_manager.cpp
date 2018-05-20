@@ -18,13 +18,11 @@ namespace pf {
     extern recursive_mutex g_plugin_managing_mutex;
 #define DEFAULT_HELP_THREAD_COUNT       4
 
-    thread_manager* thread_manager::g_thread_manager = new thread_manager;
+    thread_manager* thread_manager::g_thread_manager = nullptr;
 
     thread_manager::thread_manager() {
-        pthread_key_create(&m_thread_context_key, __destroy_thread_context);
-
         for (long i = 0; i < DEFAULT_HELP_THREAD_COUNT; ++i) {
-            ptr<help_thread> thread = new help_thread(&m_thread_context_key);
+            ptr<help_thread> thread = new help_thread();
             m_threads[thread->thread_id()] = thread;
 
             thread->resume();
@@ -41,15 +39,10 @@ namespace pf {
         return g_thread_manager;
     }
 
-    void thread_manager::__destroy_thread_context(void *param) {
-        delete (thread_context_info*) param;
-    }
-
     pthread_t
     thread_manager::create_thread_for_plugin(ptr<pf::plugin> owner) {
         ptr<plugin_thread> thread;
-        thread = new plugin_thread(owner->tasks(), owner,
-                                   &m_thread_context_key);
+        thread = new plugin_thread(owner->tasks(), owner);
 
         pthread_t thread_id = thread->thread_id();
         
@@ -107,24 +100,18 @@ namespace pf {
 
     ptr<plugin> thread_manager::current_plugin() {
         ptr<plugin> pl;
-
-        thread_context_info* ci;
-        ci = (thread_context_info*) pthread_getspecific(m_thread_context_key);
-
-        if (ci != nullptr)
-            pl = ci->plg;
-
+        void *value = thread::get_thread_attr("current_plugin");
+        if (value != nullptr)
+            pl = *(ptr<plugin>*)value;
+            
         return pl;
     }
 
     ptr<event> thread_manager::current_task() {
         ptr<event> task;
-
-        thread_context_info* ci;
-        ci = (thread_context_info*) pthread_getspecific(m_thread_context_key);
-
-        if (ci != nullptr)
-            task = ci->task;
+        void *value = thread::get_thread_attr("current_task");
+        if (value != nullptr)
+            task = *(ptr<event>*)value;
 
         return task;
     }

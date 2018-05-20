@@ -30,13 +30,12 @@ using namespace kxy;
 
 namespace pf {
 
-    class help_thread : public thread {
+    class help_thread : public plugin_thread {
     public:
         DECLARE_TYPE(thread, OBJ_HELP_THREAD);
 
     public:
-        help_thread(pthread_key_t* thread_context_key) {
-            m_thread_context = thread_context_key;
+        help_thread() : plugin_thread(nullptr, nullptr) {
         }
 
         virtual ~help_thread() {
@@ -45,45 +44,9 @@ namespace pf {
 
     public:
         virtual void* run_once() override {
-            m_cur_task = nullptr;
-            do {
-                lock_guard<mutex> _(m_mutex);
-
-                m_cur_owner = nullptr;
-
-                container::iterator i;
-                for (i = m_helping.begin(); i != m_helping.end(); ++i) {
-                    if (i->second->size() > 0) {
-                        m_cur_task = i->second->try_pop();
-                        if (m_cur_task != nullptr) {
-                            m_cur_owner = i->first;
-                            break;
-                        }
-                    }
-                }
-            } while (0);
-
-            thread_context_info* ci;
-            ci = (thread_context_info*) pthread_getspecific(*m_thread_context);
-            if (ci == nullptr) {
-                ci = new thread_context_info;
-                ci->plg = nullptr;
-                ci->task = nullptr;
-                pthread_setspecific(*m_thread_context, ci);
-            }
-            ci->plg = m_cur_owner;
-            ci->task = m_cur_task;
-
-            if (m_cur_task != nullptr) {
-                ptr<response> rsp = current_owner()->do_task(m_cur_task);
-
-                extern ptr<plugin> g_ps;
-                g_ps->tasks()->push(rsp);
-            } else {
-                sleep(1);
-            }
-
-            return 0;
+            if (get_task())
+                do_task();
+            return nullptr;
         }
 
         void add_helping(ptr<plugin> plugin, ptr<cqueue<ptr<object>>> pool) {
@@ -103,12 +66,26 @@ namespace pf {
             return m_helping.size();
         }
 
-        ptr<plugin> current_owner() {
-            return m_cur_owner;
-        }
+    protected:
+        bool get_task() {
+            m_cur_task = nullptr;
+            m_owner = nullptr;
+            do {
+                lock_guard<mutex> _(m_mutex);
 
-        ptr<object> current_task() {
-            return m_cur_task;
+                container::iterator i;
+                for (i = m_helping.begin(); i != m_helping.end(); ++i) {
+                    if (i->second->size() > 0) {
+                        m_cur_task = i->second->try_pop();
+                        if (m_cur_task != nullptr) {
+                            m_owner = i->first;
+                            break;
+                        }
+                    }
+                }
+            } while (0);
+
+            return m_cur_task != nullptr;
         }
 
     protected:
@@ -116,10 +93,6 @@ namespace pf {
 
         mutex m_mutex;
         container m_helping;
-
-        ptr<plugin> m_cur_owner;
-        ptr<event> m_cur_task;
-        pthread_key_t* m_thread_context;
     };
     
 }

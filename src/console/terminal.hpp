@@ -26,6 +26,7 @@ namespace pf {
         IMPL_F(T_NONE, "start", T_STR);
         IMPL_F(T_NONE, "stop");
         IMPL_F(T_NONE, "exit");
+        IMPL_F(T_NONE, "quit");
         IMPL_END
         
     public:

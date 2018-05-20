@@ -29,6 +29,7 @@ namespace pf {
 
     public:
         static plugin_manager* instance();
+        static void init();
 
     private:
         void add_plugin(ptr<plugin> pl);

@@ -81,7 +81,7 @@ namespace bsp {
     
     bsp_pp_parser::parser
     bsp_pp_parser::_get_parser(ptr<spl::llocation> location) {
-        return m_parser_map[location->file()->source_code()[location->pos()]];
+        return m_parser_map[(int)location->file()->source_code()[location->pos()]];
     }
     
     ptr<pptoken> bsp_pp_parser::_p_parse_keywork(ptr<llocation> location) {
@@ -167,7 +167,7 @@ namespace bsp {
         char* source = location->file()->source_code() + location->pos();
         char* p = source;
         
-        while (m_parser_map[*p] == _p_parse_symbol)
+        while (m_parser_map[(int)*p] == _p_parse_symbol)
             ++p;
         
         
@@ -236,7 +236,7 @@ namespace bsp {
         char* source = location->file()->source_code() + location->pos();
         char* p = source;
         
-        while(m_parser_map[*p] == _p_parse_space)
+        while(m_parser_map[(int)*p] == _p_parse_space)
             ++p;
         
         location->column() += p - source;
@@ -251,7 +251,7 @@ namespace bsp {
         char* source = location->file()->source_code() + location->pos();
         char* p = source;
         
-        while(m_parser_map[*p] == _p_parse_err_char)
+        while(m_parser_map[(int)*p] == _p_parse_err_char)
             ++p;
         
         location->column() += p - source;

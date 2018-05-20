@@ -19,7 +19,7 @@ using namespace kxy;
 namespace pf {
 
     extern recursive_mutex g_plugin_managing_mutex;
-    function_manager* function_manager::g_function_manager = new function_manager;
+    function_manager* function_manager::g_function_manager = nullptr;
 
     function_manager* function_manager::instance() {
         return g_function_manager;

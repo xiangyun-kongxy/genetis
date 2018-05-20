@@ -11,6 +11,7 @@
 #include "thread.hpp"
 
 #include <string>
+#include <map>
 
 using namespace std;
 
@@ -21,7 +22,37 @@ using namespace std;
 #include <lib/convert/type_convert.hpp>
 
 namespace kxy {
+
+    pthread_key_t thread::m_context_info;
+
+    void __destroy_thread_context(void* value) {
+        delete (map<string, void*>*) value;
+    }
+
+    void __attribute__((constructor)) __init_thread_context() {
+        pthread_key_create(&thread::m_context_info, __destroy_thread_context);
+    }
+
+    void* thread::get_thread_attr(const string& key) {
+        map<string, void*> *context;
+        context = (map<string, void*>*)pthread_getspecific(m_context_info);
+        if (context != nullptr)
+            return (*context)[key];
+        return nullptr;
+    }
     
+    void* thread::set_thread_attr(const string& key, void* value) {
+        map<string, void*> *context;
+        context = (map<string, void*>*)pthread_getspecific(m_context_info);
+        if (context == nullptr) {
+            context = new map<string, void*>;
+            pthread_setspecific(thread::m_context_info, context);
+        }
+        void *old = (*context)[key];
+        (*context)[key] = value;
+        return old;
+    }
+
     thread::thread() {
         string name;
         name = l2s((long)this) + ".changing";

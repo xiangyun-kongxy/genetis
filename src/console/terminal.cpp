@@ -37,6 +37,7 @@ namespace pf {
         m_executors["start"] = new start;
         m_executors["stop"] = new stop;
         m_executors["exit"] = new stop;
+        m_executors["quit"] = new stop;
         m_executors["run_cmd"] = new run_cmd;
     }
     
@@ -51,7 +52,7 @@ namespace pf {
             list<string> cmds = _get_cmd();
             
             if (cmds.size() > 0) {
-                if ((cmds.front() == "stop" || cmds.front() == "exit") &&
+                if ((cmds.front() == "stop" || cmds.front() == "exit" || cmds.front() == "quit") &&
                     m_status["framework"] != "loaded") {
                     
                     uninit();
@@ -133,6 +134,7 @@ namespace pf {
         
         if (cmds.size() == 0) {
             cout << "error: command missed." << endl;
+            return;
         }
         
         map<string, list<ptr<pf::function>>>::iterator i;
