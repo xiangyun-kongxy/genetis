@@ -48,17 +48,14 @@ namespace pf {
 
         virtual ~plugin_thread() {
             change_status(stopping);
-            
-            // waking thread up
-            for (long i = 0; i < 1024; ++i)
-                m_pool->push(nullptr);
-            
             wait_status();
         }
 
     public:
         virtual void* run_once() override {
             m_cur_task = m_pool->pop();
+            if (m_cur_task == nullptr)
+                return nullptr;
 
             thread_context_info* ci;
             ci = (thread_context_info*) pthread_getspecific(*m_thread_context);
@@ -80,11 +77,6 @@ namespace pf {
                 }
             }
             return 0;
-        }
-
-        virtual void wait_status() override {
-            m_pool->push(nullptr);
-            thread::wait_status();
         }
 
         ptr<cqueue<ptr<object>>> pool() const {

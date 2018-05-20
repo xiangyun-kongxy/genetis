@@ -44,13 +44,17 @@ namespace kxy {
         
         ty pop() {
             ty result = ty();
-            if (sem_wait(m_sem) == 0) {
-                m_mutex.lock();
-                if (m_container.size() > 0) {
-                    result = m_container.front();
-                    m_container.pop();
+            struct timespec ts;
+            if (clock_gettime(CLOCK_REALTIME, &ts) != -1) {
+                ts.tv_sec += 1;
+                if (sem_timedwait(m_sem, &ts) == 0) {
+                    m_mutex.lock();
+                    if (m_container.size() > 0) {
+                        result = m_container.front();
+                        m_container.pop();
+                    }
+                    m_mutex.unlock();
                 }
-                m_mutex.unlock();
             }
             return result;
         }

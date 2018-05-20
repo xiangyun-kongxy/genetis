@@ -12,6 +12,8 @@
 
 namespace kxy {
     
+    void init_kv_storage(const string& local_path);
+
     string kv_get(const string& service_name, const string& key);
     void kv_put(const string& service_name, const string& key, const string& value);
     

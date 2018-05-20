@@ -18,19 +18,7 @@ namespace pf {
     extern recursive_mutex g_plugin_managing_mutex;
 #define DEFAULT_HELP_THREAD_COUNT       4
 
-    thread_manager* g_thread_manager = nullptr;
-
-    void __uninit_thread_manager() {
-        delete g_thread_manager;
-        g_thread_manager = nullptr;
-    }
-
-    void __attribute__((constructor)) __init_thread_manager() {
-        g_thread_manager = new thread_manager;
-
-        register_uninitializer("uninitialize thread manager",
-                               __uninit_thread_manager);
-    }
+    thread_manager* thread_manager::g_thread_manager = new thread_manager;
 
     thread_manager::thread_manager() {
         pthread_key_create(&m_thread_context_key, __destroy_thread_context);
@@ -118,25 +106,27 @@ namespace pf {
     }
 
     ptr<plugin> thread_manager::current_plugin() {
+        ptr<plugin> pl;
+
         thread_context_info* ci;
         ci = (thread_context_info*) pthread_getspecific(m_thread_context_key);
 
-        if (ci != nullptr) {
-            return ci->plg;
-        } else {
-            return nullptr;
-        }
+        if (ci != nullptr)
+            pl = ci->plg;
+
+        return pl;
     }
 
     ptr<event> thread_manager::current_task() {
+        ptr<event> task;
+
         thread_context_info* ci;
         ci = (thread_context_info*) pthread_getspecific(m_thread_context_key);
 
-        if (ci != nullptr) {
-            return ci->task;
-        } else {
-            return nullptr;
-        }
+        if (ci != nullptr)
+            task = ci->task;
+
+        return task;
     }
     
 }

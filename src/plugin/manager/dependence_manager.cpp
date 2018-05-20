@@ -21,20 +21,7 @@ using namespace kxy;
 namespace pf {
 
     extern recursive_mutex g_plugin_managing_mutex;
-
-    dependence_manager* g_dependence_manager = nullptr;
-
-    void __uninit_dependence_manager() {
-        delete g_dependence_manager;
-        g_dependence_manager = nullptr;
-    }
-    
-    void __attribute__((constructor)) __init_dependence_manager() {
-        g_dependence_manager = new dependence_manager;
-        
-        register_uninitializer("uninitialize dependence manager",
-                               __uninit_dependence_manager);
-    }
+    dependence_manager* dependence_manager::g_dependence_manager = new dependence_manager;
 
     dependence_manager* dependence_manager::instance() {
         return g_dependence_manager;

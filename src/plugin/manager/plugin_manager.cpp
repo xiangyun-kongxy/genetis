@@ -20,20 +20,7 @@ using namespace kxy;
 namespace pf {
 
     recursive_mutex g_plugin_managing_mutex;
-    plugin_manager* g_plugin_manager = nullptr;
-
-#define HELP_THREAD_COUNT   8
-    
-    void __uninit_plugin_manager() {
-        delete g_plugin_manager;
-        g_plugin_manager = nullptr;
-    }
-    
-    void __attribute__((constructor)) __init_plugin_manager() {
-        g_plugin_manager = new plugin_manager;
-        
-        register_uninitializer("uninitialize plugin manager", __uninit_plugin_manager);
-    }
+    plugin_manager* plugin_manager::g_plugin_manager = new plugin_manager;
 
     plugin_manager* plugin_manager::instance() {
         return g_plugin_manager;
@@ -105,7 +92,7 @@ namespace pf {
         return result;
     }
 
-    void plugin_manager::plugin_actived(ptr<pf::plugin> pl) {
+    void plugin_manager::active_plugin(ptr<pf::plugin> pl) {
         lock_guard<recursive_mutex> _(g_plugin_managing_mutex);
 
         for (ptr<function> function : pl->supported_functions()) {
@@ -115,7 +102,7 @@ namespace pf {
         ++m_version;
     }
     
-    void plugin_manager::plugin_suspended(ptr<pf::plugin> pl) {
+    void plugin_manager::suspend_plugin(ptr<pf::plugin> pl) {
         lock_guard<recursive_mutex> _(g_plugin_managing_mutex);
 
         for (ptr<function> function : pl->supported_functions()) {

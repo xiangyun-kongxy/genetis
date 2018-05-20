@@ -24,8 +24,6 @@ namespace pf {
     class plugin_manager {
     private:
         friend class plugin;
-        friend void __init_plugin_manager();
-        friend void __uninit_plugin_manager();
         plugin_manager();
         ~plugin_manager();
 
@@ -35,8 +33,8 @@ namespace pf {
     private:
         void add_plugin(ptr<plugin> pl);
         void rm_plugin(ptr<plugin> pl);
-        void plugin_actived(ptr<plugin> pl);
-        void plugin_suspended(ptr<plugin> pl);
+        void active_plugin(ptr<plugin> pl);
+        void suspend_plugin(ptr<plugin> pl);
 
     public:
         list<ptr<plugin>> get_all_plugin();
@@ -50,7 +48,8 @@ namespace pf {
 
     private:
         set<ptr<plugin>> m_plugins;
-
+        static plugin_manager* g_plugin_manager;
+        
         long m_version;
     };
 }

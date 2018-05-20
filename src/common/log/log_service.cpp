@@ -27,32 +27,33 @@ namespace kxy {
         g_log_stores->clear();
     }
     
-    void __attribute__((constructor)) __init_log_stores() {
+    void init_log_stores(const string& log_path) {
         g_log_stores = new map<string, ptr<logger>>;
         
         FILE* pf;
-#ifdef DEBUG
-        logs::set_logger("debug", stdout, CUR_LOG_LEVEL);
-        logs::set_logger("info", stdout, CUR_LOG_LEVEL);
-        logs::set_logger("warn", stdout, CUR_LOG_LEVEL);
-        logs::set_logger("error", stdout, CUR_LOG_LEVEL);
-        logs::set_logger("bus", stdout, CUR_LOG_LEVEL);
-#else
-        pf = fopen("/mind/log/debug.log", "a");
-        logs::set_logger("debug", pf, CUR_LOG_LEVEL);
-        
-        pf = fopen("/mind/log/info.log", "a");
-        logs::set_logger("info", pf, CUR_LOG_LEVEL);
-        
-        pf = fopen("/mind/log/warn.log", "a");
-        logs::set_logger("warn", pf, CUR_LOG_LEVEL);
-        
-        pf = fopen("/mind/log/error.log", "a");
-        logs::set_logger("error", pf, CUR_LOG_LEVEL);
+        if (log_path == "stdout") {
+            logs::set_logger("debug", stdout, CUR_LOG_LEVEL);
+            logs::set_logger("info", stdout, CUR_LOG_LEVEL);
+            logs::set_logger("warn", stdout, CUR_LOG_LEVEL);
+            logs::set_logger("error", stdout, CUR_LOG_LEVEL);
+            pf = fopen("/dev/null", "a");
+            logs::set_logger("bus", pf, CUR_LOG_LEVEL);
+        } else {
+            pf = fopen((log_path + "/debug.log").c_str(), "a");
+            logs::set_logger("debug", pf, CUR_LOG_LEVEL);
+            
+            pf = fopen((log_path + "/info.log").c_str(), "a");
+            logs::set_logger("info", pf, CUR_LOG_LEVEL);
+            
+            pf = fopen((log_path + "/warn.log").c_str(), "a");
+            logs::set_logger("warn", pf, CUR_LOG_LEVEL);
+            
+            pf = fopen((log_path + "/error.log").c_str(), "a");
+            logs::set_logger("error", pf, CUR_LOG_LEVEL);
 
-        pf = fopen("/mind/log/bus.log", "a");
-        logs::set_logger("bus", pf, CUR_LOG_LEVEL);
-#endif
+            pf = fopen((log_path + "/bus.log").c_str(), "a");
+            logs::set_logger("bus", pf, CUR_LOG_LEVEL);
+        }
         
         register_uninitializer("uninitialize logstores", __uninit_log_stores);
     }

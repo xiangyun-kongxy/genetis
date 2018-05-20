@@ -10,8 +10,14 @@
 #define function_h
 
 #include <lib/object/object.hpp>
+#include <lib/object/ptr.hpp>
 
 #include <plugin/function/type.hpp>
+
+#include <list>
+
+using namespace std;
+using namespace kxy;
 
 namespace pf {
     

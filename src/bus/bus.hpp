@@ -7,7 +7,6 @@
 
 #include <plugin/plugin/plugin.hpp>
 
-#include <bus/executor/exe_on_route.hpp>
 
 namespace pf {
     
@@ -25,7 +24,7 @@ namespace pf {
         virtual ptr<response> do_task(ptr<event> evt) override;
 
     public:
-        ptr<on_route> m_router;
+        ptr<class on_route> m_router;
     };
     
 }

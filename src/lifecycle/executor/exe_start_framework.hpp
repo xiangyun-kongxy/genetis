@@ -15,6 +15,7 @@
 #include <plugin/plugin/plugin_config.hpp>
 
 #include <lifecycle/load/loader.hpp>
+#include <lifecycle/lifecycle.hpp>
 
 #include <class_names.hpp>
 #include <messages.hpp>

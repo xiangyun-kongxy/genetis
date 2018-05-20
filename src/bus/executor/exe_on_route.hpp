@@ -19,6 +19,7 @@
 #include <log.hpp>
 
 using namespace std;
+using namespace kxy;
 
 namespace pf {
     

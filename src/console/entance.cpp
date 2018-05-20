@@ -7,10 +7,15 @@
 //
 
 #include <console/terminal.hpp>
+#include <lib/fs/kv.hpp>
+#include <common/log/logger.hpp>
 
 using namespace pf;
 
 int main(int argc, char** argv) {
+    init_log_stores("stdout");
+    init_kv_storage("/mind/data");
+
     ptr<terminal> term = new terminal;
     term->init();
     term->resume();

@@ -24,6 +24,8 @@ namespace kxy {
     
 #define MAX_LOG_LINE_SIZE           4096 
 #define SYNC_LOG_LATENCY            1
+
+    void init_log_stores(const string& log_path);
     
     enum log_level {
         LL_DEBUG,

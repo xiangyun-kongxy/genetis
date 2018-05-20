@@ -17,6 +17,7 @@ using namespace std;
 namespace kxy {
     
     map<string, kv_service*>* g_kv_services = nullptr;
+    string g_kv_data_path = "";
     
     void __uninit_kv_service() {
         map<string, kv_service*>::iterator i;
@@ -28,7 +29,8 @@ namespace kxy {
         g_kv_services = nullptr;
     }
     
-    void __attribute__((constructor)) __init_kv_service() {
+    void init_kv_storage(const string& local_path) {
+        g_kv_data_path = local_path;
         g_kv_services = new map<string, kv_service*>;
         
         register_uninitializer("uninitialize kv service", __uninit_kv_service);
@@ -38,7 +40,7 @@ namespace kxy {
         m_name = name;
         Options opt;
         opt.create_if_missing = true;
-        Status status = DB::Open(opt, "/mind/leveldb/" + m_name, &m_db);
+        Status status = DB::Open(opt, g_kv_data_path + "/" + m_name, &m_db);
         if (!status.ok()) {
             cout << "leveldb: " << status.ToString() << endl;
         }

@@ -68,6 +68,7 @@ namespace kxy {
             if (pl != nullptr) {
                 plugin_name = pl->name().c_str();
             }
+
             ptr<event> evt = thread_manager::instance()->current_task();
             if (evt != nullptr) {
                 task_name = evt->name().c_str();
@@ -149,7 +150,7 @@ namespace kxy {
         
         char log_buf[MAX_LOG_LINE_SIZE + 1] = "";
         snprintf(log_buf, MAX_LOG_LINE_SIZE,
-                 "[%5s][%s %06d][%016lx][%-16s][%-20s]%s\n",
+                 "[%5s][%s %06ld][%016lx][%-16s][%-20s]%s\n",
                  level_mapping[level], tb, tv.tv_usec, (long)thread,
                  plugin_name, task_name, msg.c_str());
         

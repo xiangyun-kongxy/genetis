@@ -9,6 +9,7 @@
 #ifndef help_thread_h
 #define help_thread_h
 
+#include "plugin_thread.hpp"
 
 #include <unistd.h>
 

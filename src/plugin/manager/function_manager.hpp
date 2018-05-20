@@ -25,8 +25,6 @@ namespace pf {
     class function_manager {
     private:
         friend class plugin_manager;
-        friend void __init_function_manager();
-        friend void __uninit_function_manager();
         function_manager();
         ~function_manager();
         
@@ -70,9 +68,8 @@ namespace pf {
         }
 
     private:
-        
         list<function_info> m_functions;
-        
+        static function_manager* g_function_manager;
     };
     
 }

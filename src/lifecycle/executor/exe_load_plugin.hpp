@@ -16,6 +16,7 @@
 #include <plugin/manager/dependence_manager.hpp>
 
 #include <lifecycle/load/loader.hpp>
+#include <lifecycle/lifecycle.hpp>
 
 #include <common/identifier/id_simple_event.hpp>
 
@@ -25,6 +26,7 @@
 
 #include <log.hpp>
 
+#include <unistd.h>
 #include <iostream>
 
 using namespace std;

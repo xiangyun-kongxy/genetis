@@ -12,6 +12,7 @@
 #include <stdio.h>
 
 #include <lib/thread/thread.hpp>
+#include <lib/lock/spinlock.hpp>
 
 #include <plugin/plugin/plugin.hpp>
 
@@ -22,8 +23,6 @@ namespace pf {
     class thread_manager {
     private:
         friend class plugin;
-        friend void __uninit_thread_manager();
-        friend void __init_thread_manager();
 
         thread_manager();
         ~thread_manager();
@@ -50,6 +49,7 @@ namespace pf {
 
     private:
         map<pthread_t, ptr<thread>> m_threads;
+        static thread_manager* g_thread_manager;
 
         pthread_key_t m_thread_context_key;
     };

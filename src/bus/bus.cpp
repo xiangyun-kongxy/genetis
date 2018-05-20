@@ -4,6 +4,8 @@
 
 #include "bus.hpp"
 
+#include <bus/executor/exe_on_route.hpp>
+
 namespace pf {
     
     bus::bus() {

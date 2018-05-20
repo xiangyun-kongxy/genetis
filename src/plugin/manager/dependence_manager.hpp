@@ -26,8 +26,6 @@ namespace pf {
     class dependence_manager {
     private:
         friend class plugin_manager;
-        friend void __init_dependence_manager();
-        friend void __uninit_dependence_manager();
         typedef list<pair<ptr<object>,ptr<object>>> container;
         dependence_manager();
         ~dependence_manager();
@@ -49,6 +47,7 @@ namespace pf {
 
     private:
         container m_depend;
+        static dependence_manager* g_dependence_manager;
     };
     
 }

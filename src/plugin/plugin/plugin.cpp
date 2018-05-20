@@ -74,7 +74,7 @@ namespace pf {
         lock_guard<mutex> _(m_mutex);
 
         plugin_manager* pm = plugin_manager::instance();
-        pm->plugin_suspended(this);
+        pm->suspend_plugin(this);
 
         thread_manager* tm = thread_manager::instance();
         for (pthread_t thread : m_threads) {
@@ -93,7 +93,7 @@ namespace pf {
         }
 
         plugin_manager* pm = plugin_manager::instance();
-        pm->plugin_actived(this);
+        pm->active_plugin(this);
 
         m_status = PS_RUNNING;
     }
