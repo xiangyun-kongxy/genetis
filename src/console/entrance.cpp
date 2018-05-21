@@ -16,7 +16,6 @@ using namespace pf;
 int main(int argc, char** argv) {
     init_log_stores("stdout");
     init_kv_storage("/mind/data");
-    plugin_manager::init();
 
     ptr<terminal> term = new terminal;
     term->init();

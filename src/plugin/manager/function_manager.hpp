@@ -20,8 +20,6 @@ using namespace std;
 
 namespace pf {
 
-
-
     class function_manager {
     private:
         friend class plugin_manager;

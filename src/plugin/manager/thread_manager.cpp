@@ -15,10 +15,10 @@
 
 namespace pf {
 
-    extern recursive_mutex g_plugin_managing_mutex;
+    recursive_mutex g_thread_managing_mutex;
 #define DEFAULT_HELP_THREAD_COUNT       4
 
-    thread_manager* thread_manager::g_thread_manager = nullptr;
+    thread_manager* thread_manager::g_thread_manager = new thread_manager;
 
     thread_manager::thread_manager() {
         for (long i = 0; i < DEFAULT_HELP_THREAD_COUNT; ++i) {
@@ -30,7 +30,7 @@ namespace pf {
     }
 
     thread_manager::~thread_manager() {
-        lock_guard<recursive_mutex> _(g_plugin_managing_mutex);
+        lock_guard<recursive_mutex> _(g_thread_managing_mutex);
         
         m_threads.clear();
     }
@@ -46,18 +46,18 @@ namespace pf {
 
         pthread_t thread_id = thread->thread_id();
         
-        lock_guard<recursive_mutex> _(g_plugin_managing_mutex);
+        lock_guard<recursive_mutex> _(g_thread_managing_mutex);
         m_threads[thread_id] = thread;
         return thread_id;
     }
 
     void thread_manager::delete_thread(pthread_t thread) {
-        lock_guard<recursive_mutex> _(g_plugin_managing_mutex);
+        lock_guard<recursive_mutex> _(g_thread_managing_mutex);
         m_threads.erase(thread);
     }
 
     void thread_manager::suspend_thread(pthread_t t) {
-        lock_guard<recursive_mutex> _(g_plugin_managing_mutex);
+        lock_guard<recursive_mutex> _(g_thread_managing_mutex);
 
         ptr<thread> th = m_threads[t];
         if (th != nullptr) {
@@ -66,7 +66,7 @@ namespace pf {
     }
 
     void thread_manager::resume_thread(pthread_t t) {
-        lock_guard<recursive_mutex> _(g_plugin_managing_mutex);
+        lock_guard<recursive_mutex> _(g_thread_managing_mutex);
         
         ptr<thread> th = m_threads[t];
         if (th != nullptr) {
@@ -75,7 +75,7 @@ namespace pf {
     }
 
     void thread_manager::enable_help_thread(ptr<pf::plugin> pl) {
-        lock_guard<recursive_mutex> _(g_plugin_managing_mutex);
+        lock_guard<recursive_mutex> _(g_thread_managing_mutex);
 
         map<pthread_t, ptr<thread>>::iterator i;
         for (i = m_threads.begin(); i != m_threads.end(); ++i) {
@@ -87,7 +87,7 @@ namespace pf {
     }
 
     void thread_manager::disable_help_thread(ptr<pf::plugin> pl) {
-        lock_guard<recursive_mutex> _(g_plugin_managing_mutex);
+        lock_guard<recursive_mutex> _(g_thread_managing_mutex);
 
         map<pthread_t, ptr<thread>>::iterator i;
         for (i = m_threads.begin(); i != m_threads.end(); ++i) {

@@ -79,12 +79,9 @@ namespace kxy {
                 obj->run_once();
             } else {
                 struct timespec ts;
-                if (clock_gettime(CLOCK_REALTIME, &ts) != -1) {
-                    ts.tv_sec += 1;
-                    sem_timedwait(obj->m_status_changing, &ts);
-                } else {
-                    sem_wait(obj->m_status_changing);
-                }
+                clock_gettime(CLOCK_REALTIME, &ts);
+                ts.tv_sec += 1;
+                sem_timedwait(obj->m_status_changing, &ts);
             }
         }
         return (void*)obj->m_thread;
