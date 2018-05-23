@@ -1,23 +1,21 @@
-#ifndef __vertex_h__
-#define __vertex_h__
+#ifndef __nerve_pattern_hpp__
+#define __nerve_pattern_hpp__
+
+#include <nerve/edge.hpp>
 
 #include <lib/object/reference.hpp>
 #include <lib/object/ptr.hpp>
 
 #include <map>
 
-#include "edge.hpp"
-
 using namespace std;
 using namespace kxy;
 
 namespace mind {
 
-    class vertex : public reference {
-
+    class nerve_pattern : public reference {
     protected:
-        long m_barren;
-        map<long, ptr<edge>> m_edges;
+        multimap<long, ptr<edge>> m_edges;
     };
 
 }

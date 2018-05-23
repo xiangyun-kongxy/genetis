@@ -10,7 +10,7 @@
 #define plugin_config_hpp
 
 #include <string>
-#include <lib/fs/xml.hpp>
+#include <xml.hpp>
 using namespace rapidxml;
 using namespace std;
 

@@ -7,7 +7,7 @@
 
 #include <lib/object/object.hpp>
 #include <lib/identifier/identifier.hpp>
-#include <lib/fs/xml.hpp>
+#include <xml.hpp>
 #include <lib/container/cqueue.hpp>
 
 #include <plugin/response/response.hpp>
