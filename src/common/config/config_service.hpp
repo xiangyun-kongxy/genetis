@@ -23,11 +23,11 @@ namespace pf {
     extern ptr<identifier> g_cfg_provider;
     
     template<typename  ty>
-    ty read_config(const string& name) {
+    ty read_config(const string& scope, const string& name) {
         ty result = ty();
         
         ptr<serializable> rsp;
-        rsp = call_plugin(g_cfg_provider, M_GET_CONFIG, name);
+        rsp = call_plugin(g_cfg_provider, M_GET_CONFIG, scope, name);
         if (rsp != nullptr) {
             rsp >> result;
         }
@@ -36,8 +36,8 @@ namespace pf {
     }
     
     template<typename ty>
-    void save_config(const string& name, const ty& value) {
-        send_to(g_cfg_provider, M_PUT_CONFIG, name, value);
+    void save_config(const string& scope, const string& name, const ty& value) {
+        send_to(g_cfg_provider, M_PUT_CONFIG, scope, name, value);
     }
 }
 

@@ -15,6 +15,7 @@ namespace mind {
 
     class nerve_pattern : public reference {
     protected:
+        /// key-vlaue: vertex(barren) - edge object
         multimap<long, ptr<edge>> m_edges;
     };
 

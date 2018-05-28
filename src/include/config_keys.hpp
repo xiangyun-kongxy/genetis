@@ -12,6 +12,8 @@
 #include <string>
 using namespace std;
 
+static const string NS_BARREN                       = "barren";
+
 static const string CFG_PLUGIN                      = "plugin";
 static const string CFG_PRIVATE_PARAM               = "parameter";
 static const string CFG_LIB_PATH                    = "lib_path";

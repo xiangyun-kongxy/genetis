@@ -18,6 +18,7 @@
 
 #include <ipc.hpp>
 #include <messages.hpp>
+#include <config_keys.hpp>
 
 using namespace kxy;
 using namespace pf;
@@ -87,16 +88,16 @@ namespace mind {
         
         long r;
         if (i >= size()) {
-            long* ids = new long[i+3];
-            ids[0] = i + 3;
-            ids[i+2] = 0;
-            for (long n = 1; n < i + 2; ++n) {
+            long* ids = new long[i+5];
+            ids[0] = i + 5;
+            ids[i+4] = 0;
+            for (long n = 1; n < i + 4; ++n) {
                 ids[n] = m_ids[n];
             }
             delete[] m_ids;
             m_ids = ids;
         }
-        r = m_ids[i + 2];
+        r = m_ids[i + 4];
         
         m_lock.unlock();
         
@@ -105,7 +106,7 @@ namespace mind {
     
     long barren::size() {
         m_lock.lock();
-        long r = m_ids[0] - 2;
+        long r = m_ids[0] - 4;
         m_lock.unlock();
         
         return r;
@@ -168,12 +169,12 @@ namespace mind {
     }
     
     ptr<barren> barren::load(const string& name) {
-        long id = read_config<long>(name);
+        long id = read_config<long>(NS_BARREN, name);
         return load(id);
     }
     
     void barren::save(const string& name, ptr<barren> obj) {
-        save_config(name, obj->id());
+        save_config(NS_BARREN, name, obj->id());
         save(obj);
     }
     
@@ -215,7 +216,7 @@ namespace mind {
         
         id = creators[name];
         if (id == 0) {
-            id = read_config<long>(name);
+            id = read_config<long>(NS_BARREN, name);
             creators[name] = id;
         }
         
