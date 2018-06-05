@@ -7,7 +7,7 @@ namespace mind {
 
     class symmetry : public nerve_pattern_aware {
     public:
-        virtual ptr<nerve_pattern> discover(ptr<vertex> focus, 
+        virtual ptr<nerve_pattern> discover(long focus, 
                                             ptr<nerve_net> net) {
             return nullptr;
         }

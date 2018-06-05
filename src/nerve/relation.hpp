@@ -8,6 +8,10 @@ namespace mind {
 
         R_EQUAL,
 
+        R_KIND_OF,
+
+        R_CAUSATION,
+
         // subject ~ subject
         R_CONTAIN,
         R_PART_OF,
@@ -18,9 +22,8 @@ namespace mind {
         // attribute ~ value
         R_BE,
 
-        R_KIND_OF,
-
-        R_CAUSATION,
+        // suject ~ action
+        R_CAN,
     };
 
     // concepts:
@@ -29,6 +32,14 @@ namespace mind {
     // exist in set
     // relation
     // status: values of attributes
+    // 
+    // special objects:
+    // time / sequence
+    // quantity
+    //
+    // high level special objects:
+    // myself
+    //
 }
 
 #endif

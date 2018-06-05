@@ -12,9 +12,8 @@ namespace mind {
 
     class edge : public reference {
     protected:
-        long m_start;
+        long m_begin;
         long m_end;
-        long m_digree;
         relation m_relation;
     };
 

@@ -1,14 +1,14 @@
 #include "base.bsp"
 
 // predicate is kind of type
-(pred, define, pred, relation)
+(pred, kindof, pred, relation)
 
 // relations
-(is, define, is, relation)
-(equal, define, equal, relation)
-(like, define, like, relation)
-(kindof, define, kindof, relation)
-(oneof, define, oneof, relation)
-(in, define, in, relation)
+(is, kindof, is, relation)
+(equal, kindof, equal, relation)
+(like, kindof, like, relation)
+(kindof, kindof, kindof, relation)
+(oneof, kindof, oneof, relation)
+(in, kindof, in, relation)
 
 

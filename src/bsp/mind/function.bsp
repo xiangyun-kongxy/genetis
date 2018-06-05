@@ -3,33 +3,33 @@
 #include "type.bsp"
 
 // program structure
-(f_if, define, f_if, rfunc, 3C)
-(f_wl, define, f_wl, rfunc, 2C)
-(f_do, define, f_do, rfunc, 10000C)
+(f_if, kindof, f_if, (rfunc, 3C))
+(f_wl, kindof, f_wl, (rfunc, 2C))
+(f_do, kindof, f_do, (rfunc, 10000C))
 
 // logical function
-(f_not, define, f_not, rfunc, 1C)
-(f_and, define, f_and, rfunc, 2C)
-(f_or,  define, f_or, rfunc, 2C)
-(f_xor, define, f_xor, rfunc, 2C)
+(f_not, kindof, f_not, (rfunc, 1C))
+(f_and, kindof, f_and, (rfunc, 2C))
+(f_or,  kindof, f_or,  (rfunc, 2C))
+(f_xor, kindof, f_xor, (rfunc, 2C))
 
 // barren structure
-(f_exist, define, f_exist, rfunc, 1C)
+(f_exist, kindof, f_exist, (rfunc, 1C))
 
-(f_prt, define, f_prt, rfunc, 1C)
-(f_crt, define, f_crt, rfunc, 1C)
-(f_ty, define, f_ty, rfunc, 1C)
+(f_prt, kindof, f_prt, (rfunc, 1C))
+(f_crt, kindof, f_crt, (rfunc, 1C))
+(f_ty, kindof, f_ty, (rfunc, 1C))
 
 // quantity
 
-(f_epos, define, f_epos, rfunc, 2C)
-(f_hpos, define, f_hpos, rfunc, 10000C)
-(f_bs,   define, f_bs, cfunc, 1C,
+(f_epos, kindof, f_epos, (rfunc, 2C))
+(f_hpos, kindof, f_hpos, (rfunc, 10000C))
+(f_bs,   define, f_bs, ((cfunc, 1C),
     (_a,  call, f_do, 
         (_a, call, f_epos, 1P, 2C),
         (_b, call, f_epos, _a, 2C),
         (_c, call, f_epos, _b, 3C),
         (_d, call, f_epos, _b, 1C),
         (_e, call, f_hpos, _a, _b, _c, _d)
-    )
+    ))
 )
