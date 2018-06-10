@@ -4,6 +4,9 @@
 #include <lib/object/object.hpp>
 #include <lib/object/ptr.hpp>
 
+#include <understand/metainfo/metainfo.hpp>
+#include <learning/repeat_learning/book.hpp>
+
 using namespace kxy;
 
 namespace mind {
@@ -12,6 +15,8 @@ namespace mind {
     public:
         DECLARE_TYPE(object, "recognizor");
 
+   public:
+        virtual ptr<metainfo> recognize(ptr<book> bk) = 0;
     };
 }
 
