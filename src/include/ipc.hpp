@@ -48,7 +48,7 @@ namespace pf {
     template<typename ...ptype>
     ptr<serializable> call(const string& func_name, ptype... params) {
         ptr<serializable> param = new serializable;
-        param = pack_data(params...);
+        param = pack_data(param, params...);
         ptr<event> evt = new simple_event(func_name, param);
         ptr<response> rsp = call(evt);
 
