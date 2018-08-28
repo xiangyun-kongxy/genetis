@@ -4,7 +4,9 @@ console_dep := -lplugin -lcommon -llib -lbus -llifecycle -lipc -lps -lleveldb
 
 modules := plugin common lib bus lifecycle ipc ps attestor heartbeat learning \
 	memory spl barren id_service timer barren_cache config_center \
-	plugin_controller gower executor leveldb
+	plugin_controller gower executor leveldb visual_plus
+visual_plus_path := src/app/visual_plus
+visual_plus_def := -llib
 leveldb_path := third_part/leveldb
 plugin_controller_path := src/util/plugin_controller
 plugin_controller_dep := -lplugin -llib -lcommon
