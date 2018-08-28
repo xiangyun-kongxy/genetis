@@ -1,0 +1,22 @@
+{
+    "configurations": [
+        {
+            "name": "Mac",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/usr/local/include/wx-3.0",
+                "/usr/local/lib/wx/include/osx_cocoa-unicode-3.0"
+            ],
+            "defines": ["_FILE_OFFSET_BITS", "WXUSINGDLL", "__WXMAC__", "__WXOSX__", "__WXOSX_COCOA__"],
+            "macFrameworkPath": [
+                "/System/Library/Frameworks",
+                "/Library/Frameworks"
+            ],
+            "compilerPath": "/usr/bin/clang",
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "clang-x64"
+        }
+    ],
+    "version": 4
+}

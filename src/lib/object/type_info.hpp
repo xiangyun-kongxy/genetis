@@ -16,10 +16,10 @@ namespace kxy {
 #define DECLARE_TYPE(base, inherit_type_name)                           \
 public:                                                                 \
     virtual string type() const override {                              \
-        return inherit_type_name;                                       \
+        return #inherit_type_name;                                      \
     }                                                                   \
     virtual bool is_kind_of(const string& type_name) const override {   \
-        return type_name == inherit_type_name                           \
+        return type_name == #inherit_type_name                          \
         || base::is_kind_of(type_name);                                 \
     }
 

@@ -19,6 +19,7 @@ namespace kxy {
      * @since: 9:24 PM Oct 5, 2016
      *
      * @warning ty must be derived from ::kxy::reference
+     * recursive reference is ommitted
      *
      */
     template<typename ty>
