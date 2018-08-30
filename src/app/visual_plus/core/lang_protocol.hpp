@@ -10,7 +10,7 @@ class lang_protocol : public object {
 public:
     DECLARE_TYPE(object, lang_protocol);
 public:
-    virtual string compile() = 0;
+    virtual string compile() const = 0;
 };
 
 }
