@@ -2,6 +2,7 @@
 #define __pi_assign_hpp
 
 #include <core/pi_value.hpp>
+#include <core/pi_slot.hpp>
 
 namespace vp {
 

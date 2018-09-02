@@ -1,18 +1,14 @@
 #ifndef __pi_stt_hpp__
 #define __pi_stt_hpp__
 
-#include <core/pi_mixer.hpp>
+#include <core/pi_value.hpp>
 
 namespace vp {
 
-class pi_stt : public pi_protocol {
+class pi_stt : public pi_value {
 public:
-    DECLARE_TYPE(pi_protocol, pi_stt);
-protected:
-    ptr<pi_protocol> m_opt;
-    ptr<pi_mixer> m_opd;
-    list<pi_value>> m_inputs;
-}
+    DECLARE_TYPE(pi_value, pi_stt);
+};
 
 }
 

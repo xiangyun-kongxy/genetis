@@ -2,6 +2,10 @@
 #define __pi_decl_hpp__
 
 #include <core/pi_value.hpp>
+#include <core/pi_mixer.hpp>
+
+#include <list>
+using namespace std;
 
 namespace vp {
 
