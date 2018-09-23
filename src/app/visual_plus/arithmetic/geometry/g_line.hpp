@@ -5,6 +5,11 @@
 #include <lib/object/ptr.hpp>
 #include <arithmetic/geometry/g_point.hpp>
 
+#include <list>
+
+using namespace kxy;
+using namespace std;
+
 namespace vp {
 
 class g_line : public object {

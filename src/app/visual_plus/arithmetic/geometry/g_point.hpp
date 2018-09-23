@@ -5,6 +5,8 @@
 #include <lib/object/ptr.hpp>
 #include <arithmetic/geometry/coord.h>
 
+using namespace kxy;
+
 namespace vp {
 
 class g_point : public object {

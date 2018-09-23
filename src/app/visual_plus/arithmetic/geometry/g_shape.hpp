@@ -3,6 +3,8 @@
 
 #include <lib/object/object.hpp>
 
+using namespace kxy;
+
 namespace  vp {
 
 class g_shape : public object {
