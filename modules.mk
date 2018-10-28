@@ -1,12 +1,12 @@
-executors := console
+executors := console visual_plus
 console_path := src/util/console
 console_dep := -lplugin -lcommon -llib -lbus -llifecycle -lipc -lps -lleveldb
+visual_plus_path := src/app/visual_plus
+visual_plus_def := -llib
 
 modules := plugin common lib bus lifecycle ipc ps attestor heartbeat learning \
 	memory spl barren id_service timer barren_cache config_center \
-	plugin_controller gower executor leveldb visual_plus
-visual_plus_path := src/app/visual_plus
-visual_plus_def := -llib
+	plugin_controller gower executor leveldb
 leveldb_path := third_part/leveldb
 plugin_controller_path := src/util/plugin_controller
 plugin_controller_dep := -lplugin -llib -lcommon

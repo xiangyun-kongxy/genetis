@@ -19,5 +19,11 @@
         "utility": "cpp",
         "vector": "cpp",
         "hashtable": "cpp"
-    }
+    },
+
+    "explorer.autoReveal": false,
+
+    "editor.fontFamily": "Source Code Pro",
+    "editor.fontWeight": "600",
+    "editor.fontSize": 13
 }

@@ -9,10 +9,10 @@ uselib :=-lpthread -luuid -ldl
 uselibpath :=-L/usr/local/lib64
 else 
 ifeq ($(shell uname), Darwin)
-flagext := -DLEVELDB_PLATFORM_POSIX -DOS_MACOSX -Wno-deprecated-declarations -std=gnu++11 -stdlib=libc++
+flagext := -DLEVELDB_PLATFORM_POSIX -DOS_MACOSX -Wno-deprecated-declarations -std=gnu++11 -stdlib=libc++ -I/usr/local/lib/wx/include/osx_cocoa-unicode-3.1 -I/usr/local/include/wx-3.1 -D_FILE_OFFSET_BITS=64 -DWXUSINGDLL -D__WXMAC__ -D__WXOSX__ -D__WXOSX_COCOA__
 libext :=dylib
-uselib :=
-uselibpath :=
+uselib := -framework IOKit -framework Carbon -framework Cocoa -framework AudioToolbox -framework System -framework OpenGL -lwx_osx_cocoau_xrc-3.1 -lwx_osx_cocoau_html-3.1 -lwx_osx_cocoau_qa-3.1 -lwx_osx_cocoau_adv-3.1 -lwx_osx_cocoau_core-3.1 -lwx_baseu_xml-3.1 -lwx_baseu_net-3.1 -lwx_baseu-3.1
+uselibpath := -L/usr/local/lib
 endif
 endif
 
