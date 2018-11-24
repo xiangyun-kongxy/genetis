@@ -18,12 +18,17 @@
         "unordered_map": "cpp",
         "utility": "cpp",
         "vector": "cpp",
-        "hashtable": "cpp"
+        "hashtable": "cpp",
+        "typeinfo": "cpp"
     },
 
     "explorer.autoReveal": false,
 
     "editor.fontFamily": "Source Code Pro",
     "editor.fontWeight": "600",
-    "editor.fontSize": 13
+    "editor.fontSize": 13,
+    "editor.fontLigatures": true,
+    "editor.formatOnPaste": true,
+    "editor.formatOnType": true,
+    "editor.minimap.maxColumn": 80
 }

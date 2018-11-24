@@ -5,14 +5,16 @@
 
 namespace kxy {
 
-static int cmp(double a, double b) {
-    if ((a-b)*(a-b) < 1e-12)
-        return 0;
-    else if (a < b)
-        return -1;
-    else 
-        return 1;
-}
+    #define ZERO    1e-6
+
+    static int cmp(double a, double b) {
+        if (fabs(a-b) < ZERO)
+            return 0;
+        else if (a < b)
+            return -1;
+        else 
+            return 1;
+    }
 
 }
 

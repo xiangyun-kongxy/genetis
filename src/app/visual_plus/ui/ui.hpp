@@ -9,20 +9,21 @@ namespace vp {
 
 class ui : public managed_object {
 public:
-    DECLARE_TYPE(managed_object, ui);
+  DECLARE_TYPE(managed_object, ui);
+
 public:
-    virtual bool on_mouse_move() = 0;
-    virtual bool on_mouse_down() = 0;
-    virtual bool on_mouse_up() = 0;
-    virtual bool on_mouse_move_in() = 0;
-    virtual bool on_mouse_move_out() = 0;
+  virtual void on_mouse_move();
+  virtual void on_mouse_down();
+  virtual void on_mouse_up();
+  virtual void on_mouse_move_in();
+  virtual void on_mouse_move_out();
 
-    virtual bool on_key_down() = 0;
-    virtual bool on_key_up() = 0;
+  virtual void on_key_down();
+  virtual void on_key_up();
 
-    virtual bool on_click_menu() = 0;
+  virtual void on_click_menu();
 
-    virtual bool on_draw() = 0;
+  virtual void on_draw();
 };
 
 }

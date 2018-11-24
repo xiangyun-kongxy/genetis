@@ -3,13 +3,15 @@
 
 IMPLEMENT_APP(app);
 
+using namespace vp;
+
 bool app::OnInit() {
     if (!wxApp::OnInit()) {
         return false;
     }
 
-    frame* frame = new class frame();
-    frame->Show();
+    frame* fm = new frame("mainf");
+    fm->Show();
 
     return true;
 }
