@@ -2,14 +2,15 @@
 #define __frame_h__
 
 #include <wx/wx.h>
-#include <app/visual_plus/ui/ui.hpp>
+#include <string>
+
+using namespace std;
 
 namespace vp {
 
-class frame : public wxFrame, public ui {
+class frame : public wxFrame {
 public:
-  frame(const string& name);
-  virtual string name() const override;
+  frame();
 
 public:
   void on_mouse_event(wxMouseEvent& evt);
@@ -19,7 +20,6 @@ public:
   wxDECLARE_EVENT_TABLE();
 
 private:
-  string m_name;
   wxPoint m_mouse_pos;
   string m_mouse_event;
 };

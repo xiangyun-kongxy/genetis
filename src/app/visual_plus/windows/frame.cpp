@@ -7,12 +7,7 @@ namespace vp {
         EVT_PAINT(frame::on_paint)
     wxEND_EVENT_TABLE()
 
-    frame::frame(const string& name) : wxFrame(nullptr, wxID_ANY, "visual plus") {
-        m_name = name;
-    }
-
-    string frame::name() const {
-        return m_name;
+    frame::frame() : wxFrame(nullptr, wxID_ANY, "visual plus") {
     }
 
     void frame::on_mouse_event(wxMouseEvent& evt) {
@@ -20,6 +15,13 @@ namespace vp {
         m_mouse_pos = evt.GetPosition();
         if (evt.Moving()) 
             m_mouse_event += " move";
+        if (evt.IsButton()) {
+            wxMenu *menu = new wxMenu();
+            wxMenuItem *item = new wxMenuItem(menu, 1432, "test");
+            menu->Append(item);
+            this->DoPopupMenu(menu, m_mouse_pos.x, m_mouse_pos.y);
+            delete menu;
+        }
         this->Refresh(false);
     }
 

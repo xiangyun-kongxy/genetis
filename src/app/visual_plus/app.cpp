@@ -1,5 +1,5 @@
 #include "app.hpp"
-#include "frame.hpp"
+#include <app/visual_plus/windows/frame.hpp>
 
 IMPLEMENT_APP(app);
 
@@ -10,7 +10,7 @@ bool app::OnInit() {
         return false;
     }
 
-    frame* fm = new frame("mainf");
+    frame* fm = new frame();
     fm->Show();
 
     return true;

@@ -3,10 +3,10 @@
         {
             "name": "Mac",
             "includePath": [
-                "${workspaceFolder}/src",
-                "${workspaceFolder}/src/include",
                 "/usr/local/include/wx-3.1",
-                "/usr/local/lib/wx/include/osx_cocoa-unicode-3.1"
+                "/usr/local/lib/wx/include/osx_cocoa-unicode-3.1",
+                "${workspaceFolder}/src",
+                "${workspaceFolder}/src/include"
             ],
             "defines": ["_FILE_OFFSET_BITS", "WXUSINGDLL", "__WXMAC__", "__WXOSX__", "__WXOSX_COCOA__"],
             "macFrameworkPath": [
