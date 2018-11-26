@@ -1,21 +1,20 @@
 #ifndef __graph_h__
 #define __graph_h__
 
-#include <app/visual_plus/arithmetic/geometry/path.hpp>
+#include "point.hpp"
+#include <lib/object/ptr.hpp>
+#include <wx/wx.h>
+
 using namespace std;
+using namespace kxy;
 
 namespace vp {
 
-class graph {
+class graph : public reference {
 public:
-     virtual void draw();
-
-public:
-     virtual void transform(ptr<matrix> mat);
-     virtual bool contain(ptr<point> pt);
-
-public:
-     virtual list<ptr<path>> get_paths();
+     virtual void draw() = 0;
+     virtual bool in(ptr<point> pt) = 0;
+     virtual void set_transform(wxAffineMatrix2D& mat) = 0;
 };
 
 }
