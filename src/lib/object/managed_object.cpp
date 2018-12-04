@@ -16,8 +16,13 @@ static std::mutex lock;
 
 static void sort_objects();
 
-managed_object::managed_object() {
+managed_object::managed_object(const string& name) {
+    m_name = name;
     fresh_objects.push(this);
+}
+
+string managed_object::name() const {
+    return m_name;
 }
 
 ptr<object> managed_object::get_by_id(string id) {

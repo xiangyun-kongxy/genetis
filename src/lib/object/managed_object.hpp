@@ -14,10 +14,13 @@ public:
     DECLARE_TYPE(object, managed_object);
 
 public:
-    managed_object();
+    managed_object(const string& name);
 
 public:
-    virtual string name() const override = 0;
+    virtual string name() const override;
+
+protected:
+    string m_name;
 
 public:
     static ptr<object> get_by_id(string id);

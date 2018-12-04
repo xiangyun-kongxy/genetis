@@ -1,4 +1,5 @@
 #include "grid_layout.hpp"
+#include <visual_plus/ui/visual_object.hpp>
 
 namespace vp {
 grid_layout::grid_layout(int row, int column, 

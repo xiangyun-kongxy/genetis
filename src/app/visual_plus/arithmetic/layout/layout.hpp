@@ -9,6 +9,8 @@ namespace vp {
 
 class layout : public object {
 public:
+    DECLARE_TYPE(object, layout);
+public:
     virtual void apply() = 0;
 };
 

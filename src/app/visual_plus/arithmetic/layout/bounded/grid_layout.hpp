@@ -8,6 +8,8 @@ namespace vp {
 
 class grid_layout : public box_layout {
 public:
+    DECLARE_TYPE(box_layout, grid_layout);
+public:
     grid_layout(int row, int column, initializer_list<double> row_height, 
             initializer_list<double> column_width);
 
