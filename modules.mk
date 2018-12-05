@@ -2,9 +2,9 @@ executors := console visual_plus spl
 console_path := src/util/console
 console_dep := -lplugin -lcommon -llib -lbus -llifecycle -lipc -lps -lleveldb
 visual_plus_path := src/app/visual_plus
-visual_plus_dep := -llib
+visual_plus_dep := -llib -lleveldb
 spl_path := src/app/spl
-spl_dep := -lplugin
+spl_dep := -lplugin -llib -lleveldb
 
 modules := plugin common lib bus lifecycle ipc ps attestor heartbeat learning \
 	memory barren id_service timer barren_cache config_center \
