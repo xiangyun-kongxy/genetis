@@ -1,5 +1,6 @@
 #include "frame.hpp"
 #include <visual_plus/ui/visual_objects/vo_image.hpp>
+#include <lib/macro/warn.hpp>
 
 namespace vp {
 
@@ -31,6 +32,7 @@ namespace vp {
     }
 
     void frame::on_paint(wxPaintEvent& evt) {
+        disable_warn_unused(evt);
         wxPaintDC dc(this);
         image->on_draw(&dc);
     }
