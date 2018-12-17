@@ -15,8 +15,4 @@ void graph::set_rect(wxRect& rect) {
     m_rect = rect;
 }
 
-bool graph::hit_check(wxPoint& point) const {
-    return m_rect.Contains(point);
-}
-
 }

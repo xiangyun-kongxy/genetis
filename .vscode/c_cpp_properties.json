@@ -11,12 +11,12 @@
                 "${workspaceFolder}/src/app",
                 "${workspaceFolder}/src/app/mind"
             ],
-            "defines": ["_FILE_OFFSET_BITS", "WXUSINGDLL", "__WXMAC__", "__WXOSX__", "__WXOSX_COCOA__"],
+            "defines": ["_FILE_OFFSET_BITS", "WXUSINGDLL", "__WXMAC__", "__WXOSX__", "__WXOSX_COCOA__", "wxUSE_CONSTRAINTS"],
             "macFrameworkPath": [
                 "/System/Library/Frameworks",
                 "/Library/Frameworks"
             ],
-            "compilerPath": "/usr/bin/gcc",
+            "compilerPath": "/usr/bin/clang",
             "cppStandard": "c++11"
         }
     ],

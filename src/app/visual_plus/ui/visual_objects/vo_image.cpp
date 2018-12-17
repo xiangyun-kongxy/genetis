@@ -5,6 +5,7 @@ namespace vp {
 
 void __attribute__((constructor)) __init_image_handlers__() {
     wxImage::AddHandler(new wxJPEGHandler);
+    wxImage::AddHandler(new wxPNGHandler);
 }
 
 vo_image::vo_image(string path, wxRect rect) :

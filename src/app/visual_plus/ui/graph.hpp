@@ -14,8 +14,6 @@ public:
      wxRect get_rect() const;
      void set_rect(wxRect& rect);
 
-     bool hit_check(wxPoint& point) const;
-
 protected:
      wxRect m_rect;
 };

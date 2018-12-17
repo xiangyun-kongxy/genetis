@@ -3,13 +3,17 @@
 
 namespace vp {
 grid_layout::grid_layout(int row, int column, 
-        initializer_list<double> row_height, 
-        initializer_list<double> column_width) {
+        initializer_list<double> column_width,
+        initializer_list<double> row_height) {
     m_row = row;
     m_column = column;
     m_grids = new grid*[m_row];
     for (int i = 0; i < m_row; ++i) {
         m_grids[i] = new grid[m_column];
+        for (int n = 0; n < m_column; ++n) {
+            m_grids[i][n].win = nullptr;
+            m_grids[i][n].obj = nullptr;
+        }
     }
     init_height(row_height);
     init_width(column_width);
@@ -77,6 +81,8 @@ void grid_layout::resize(int x, int y, int width, int height) {
                 m_grids[r][c].real_rect.SetHeight(m_grids[r][c].height);
             else
                 m_grids[r][c].real_rect.SetHeight(r_height*m_grids[r][c].height);
+            m_grids[r][c].real_rect.SetX(cx);
+            m_grids[r][c].real_rect.SetY(cy);
             cx += m_grids[r][c].real_rect.GetWidth();
             dy = m_grids[r][c].real_rect.GetHeight();
         }
@@ -87,28 +93,42 @@ void grid_layout::resize(int x, int y, int width, int height) {
 void grid_layout::apply() {
     for (int r = 0; r < m_row; ++r) {
         for (int c = 0; c < m_column; ++c) {
-            if (m_grids[r][c].obj->is_kind_of("visual_object"))
-                ((ptr<visual_object>)m_grids[r][c].obj);
-            else if (m_grids[r][c].obj->is_kind_of("box_layout"))
-                ((ptr<box_layout>)m_grids[r][c].obj);
+            if (m_grids[r][c].win == nullptr && m_grids[r][c].obj == nullptr)
+                continue;
+
+            wxRect rect = m_grids[r][c].real_rect;
+            if (m_grids[r][c].win != nullptr) {
+                m_grids[r][c].win->SetPosition(rect.GetPosition());
+                m_grids[r][c].win->SetSize(rect.GetSize());
+            } else if (m_grids[r][c].obj->is_kind_of("visual_object")) {
+                ((ptr<visual_object>)m_grids[r][c].obj)->set_rect(rect);
+            } else if (m_grids[r][c].obj->is_kind_of("box_layout")) {
+                ((ptr<box_layout>)m_grids[r][c].obj)->resize(rect.x, rect.y, rect.width, rect.height);
+                ((ptr<box_layout>)m_grids[r][c].obj)->apply();
+            }
         }
     }
 }
 
 void grid_layout::add(ptr<visual_object> vo, int position) {
     int row = position / m_column;
-    int column = position / m_column;
+    int column = position % m_column;
     m_grids[row][column].obj = vo;
+    m_grids[row][column].win = nullptr;
 }
 
 void grid_layout::add(ptr<box_layout> box, int position) {
     int row = position / m_column;
-    int column = position / m_column;
+    int column = position % m_column;
     m_grids[row][column].obj = box;
+    m_grids[row][column].win = nullptr;
 }
 
-wxSize grid_layout::min_size() const {
-    return m_min_size;
+void grid_layout::add(wxWindow* win, int position) {
+    int row = position / m_column;
+    int column = position % m_column;
+    m_grids[row][column].obj = nullptr;
+    m_grids[row][column].win = win;
 }
 
 }

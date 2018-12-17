@@ -1,7 +1,6 @@
 #ifndef __frame_h__
 #define __frame_h__
 
-#include <wx/wx.h>
 #include <string>
 #include <visual_plus/ui/visual_objects/vo_image.hpp>
 
@@ -9,21 +8,17 @@ using namespace std;
 
 namespace vp {
 
-class frame : public wxFrame {
+class main_frame : public wxFrame {
 public:
-    frame();
+    main_frame();
 
 public:
     void on_mouse_event(wxMouseEvent& evt);
     void on_paint(wxPaintEvent& evt);
+    void on_exit(wxCommandEvent& evt);
 
 public:
     wxDECLARE_EVENT_TABLE();
-
-private:
-    wxPoint m_mouse_pos;
-    string m_mouse_event;
-    ptr<vo_image> image; 
 };
 }
 #endif
