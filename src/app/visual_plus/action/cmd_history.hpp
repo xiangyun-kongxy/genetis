@@ -2,11 +2,16 @@
 #define __cmd_history_hpp__
 
 #include "command.hpp"
+#include <lib/object/managed_object.hpp>
+using namespace kxy;
 
 namespace vp {
 
 
-class cmd_history {
+class cmd_history : public managed_object {
+public:
+    DECLARE_TYPE(managed_object, cmd_history);
+
 public:
     struct cmd_node {
         cmd_node* parent;
