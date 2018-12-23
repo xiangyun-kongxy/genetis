@@ -4,6 +4,9 @@
 #include <app/visual_plus/windows/win_explorer.hpp>
 #include <wx/sashwin.h>
 #include <wx/splitter.h>
+#include <visual_plus/windows/vo_view.hpp>
+#include <visual_plus/container/vo_document.hpp>
+#include <visual_plus/ui/visual_objects/vo_box.hpp>
 
 IMPLEMENT_APP(app);
 
@@ -17,6 +20,16 @@ bool app::OnInit() {
     wxFrame* frame = new main_frame();
     frame->SetSize(1024, 768);
 
+    ptr<vo_document> doc = new vo_document("unnamed");
+    vo_view* view = new vo_view(doc, frame);
+    doc->set_view(view);
+
+    ptr<vo_box> vb1 = new vo_box(wxRect(200, 100, 120, 40));
+    ptr<vo_box> vb2 = new vo_box(wxRect(400, 100, 120, 40));
+    map<string, ptr<visual_object>>* vos = doc->get_dataobjects();
+    (*vos)[vb1->name()] = vb1;
+    (*vos)[vb2->name()] = vb2;
+/*
     wxWindow* main = new wxWindow(frame, wxID_ANY);
     main->SetAutoLayout(true);
 
@@ -55,6 +68,7 @@ bool app::OnInit() {
     // rwin->SetWindowStyle(wxSP_LIVE_UPDATE | wxBORDER_THEME | wxSP_3D);
     // rwin->SetBackgroundColour(*wxWHITE);
     rwin->SetAutoLayout(true);
+    */
 
     frame->Show();
 

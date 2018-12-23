@@ -15,9 +15,12 @@ using namespace std;
 
 namespace vp {
 
-class content : public managed_object {
+class content : public object {
 public:
-    DECLARE_TYPE(managed_object, content);
+    DECLARE_TYPE(object, content);
+
+public:
+    virtual ~content();
 
 public:
     ptr<visual_object> get_cur_selected();
@@ -30,7 +33,7 @@ public:
     ptr<mouse_status> get_mouse_history(int prev_num);
 
     ptr<keyboard_status> get_cur_keyboard();
-    ptr<mouse_status> get_keyboard_history(int prev_num);
+    ptr<keyboard_status> get_keyboard_history(int prev_num);
 
     void set_var(const string& name, ptr<object> value);
     ptr<object> get_var(const string& name);

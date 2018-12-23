@@ -6,12 +6,16 @@
 #include <lib/object/managed_object.hpp>
 #include <visual_plus/arithmetic/layout/bounded/box_layout.hpp>
 #include <visual_plus/action/event_handler.hpp>
+#include <visual_plus/container/vo_document.hpp>
 #include <map>
 
 using namespace std;
 using namespace kxy;
 
 namespace vp {
+
+class visual_object;
+typedef visual_object* (*vo_creator)(ptr<vo_document> doc);
 
 class visual_object : public event_handler, public graph, public managed_object {
 public:
@@ -20,14 +24,19 @@ public:
 public:
     visual_object(const string& name, const wxRect& rect);
     visual_object(const wxRect& rect);
+    virtual vo_creator get_creator() = 0;
 
 public:
     vo_status get_status() const;
     void set_status(vo_status status);
 
+    ptr<vo_document> get_document() const;
+    void set_document(ptr<vo_document> doc);
+
 protected:
     vo_status m_status;
-    ptr<box_layout> child;
+    ptr<vo_document> m_doc;
+    ptr<box_layout> m_children;
 };
 
 } // namespace vp
