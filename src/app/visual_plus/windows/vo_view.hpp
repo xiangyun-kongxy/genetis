@@ -3,6 +3,7 @@
 
 #include <wx/wx.h>
 #include <visual_plus/container/vo_document.hpp>
+#include <visual_plus/ui/visual_object.hpp>
 
 namespace vp
 {
@@ -20,10 +21,19 @@ public:
     virtual void on_draw(wxPaintEvent& evt);
 
 public:
+    void capture_mouse_event(ptr<visual_object> processor);
+    void release_mouse_event(ptr<visual_object> processor);
+    void capture_key_event(ptr<visual_object> processor);
+    void release_key_event(ptr<visual_object> processor);
+
+public:
     ptr<vo_document> get_document() const;
 
 protected:
     ptr<vo_document> m_doc;
+    ptr<visual_object> m_mouse_processor;
+    ptr<visual_object> m_mouse_last_processor;
+    ptr<visual_object> m_key_processor;
 
 private:
     wxDECLARE_EVENT_TABLE();

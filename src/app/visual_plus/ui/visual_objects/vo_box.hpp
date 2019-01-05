@@ -14,7 +14,20 @@ public:
 
 public:
     virtual void on_draw(wxPaintDC* dc) override;
+    virtual void on_mouse_down(wxMouseEvent* evt) override;
+    virtual void on_mouse_move(wxMouseEvent* evt) override;
+    virtual void on_mouse_up(wxMouseEvent* evt) override;
 
+protected:
+    enum edge {
+        LEFT    = 1,
+        TOP     = 2,
+        RIGHT   = 4,
+        BOTTOM  = 8,
+    };
+    bool m_resizing;
+    long m_resize_edges;
+    wxPoint m_resize_cur_pos;
 };
 
 }

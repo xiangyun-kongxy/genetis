@@ -10,6 +10,7 @@ public:
   virtual void on_mouse_move(wxMouseEvent* evt) {}
   virtual void on_mouse_down(wxMouseEvent* evt) {}
   virtual void on_mouse_up(wxMouseEvent* evt) {}
+  virtual void on_mouse_dbclict(wxMouseEvent* evt) {}
   virtual void on_mouse_move_in(wxMouseEvent* evt) {}
   virtual void on_mouse_move_out(wxMouseEvent* evt) {}
 

@@ -30,7 +30,7 @@ public:
     vo_status get_status() const;
     void set_status(vo_status status);
 
-    ptr<vo_document> get_document() const;
+    ptr<vo_document> get_document();
     void set_document(ptr<vo_document> doc);
 
 protected:
