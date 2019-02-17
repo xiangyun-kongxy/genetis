@@ -10,8 +10,8 @@
 #define lsymbol_h
 
 #include <lib/object/ptr.hpp>
-#include <spl/general/ltype.hpp>
-#include <spl/general/pptoken.hpp>
+#include <general/ltype.hpp>
+#include <general/pptoken.hpp>
 
 #include <map>
 #include <string>

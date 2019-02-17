@@ -4,8 +4,10 @@
 #include <lib/object/ptr.hpp>
 #include "../layout.hpp"
 #include <wx/wx.h>
+#include <list>
 
 using namespace kxy;
+using namespace std;
 
 namespace vp {
 
@@ -20,7 +22,7 @@ public:
 public:
     virtual void add(ptr<visual_object> vo, int position) = 0;
     virtual void add(ptr<box_layout> box, int position) = 0;
-    virtual void add(wxWindow* win, int position) = 0;
+    virtual list<ptr<object>> get_objects() = 0;
 };
 
 }

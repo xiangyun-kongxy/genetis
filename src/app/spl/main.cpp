@@ -9,7 +9,7 @@
 #include <iostream>
 #include <string>
 
-#include <spl/bsp/bsp_complier.hpp>
+#include <bsp/bsp_complier.hpp>
 
 using namespace std;
 using namespace spl;

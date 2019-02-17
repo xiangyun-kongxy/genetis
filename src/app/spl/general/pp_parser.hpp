@@ -9,8 +9,8 @@
 #ifndef pp_parser_h
 #define pp_parser_h
 
-#include <spl/general/pptoken.hpp>
-#include <spl/general/llocation.hpp>
+#include <general/pptoken.hpp>
+#include <general/llocation.hpp>
 
 namespace spl {
     

@@ -11,7 +11,7 @@
 
 #include <lib/fs/file_util.hpp>
 
-#include <spl/general/ldir.hpp>
+#include <general/ldir.hpp>
 
 using namespace kxy;
 

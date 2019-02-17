@@ -9,9 +9,9 @@
 #ifndef bsp_pp_parser_hpp
 #define bsp_pp_parser_hpp
 
-#include <spl/general/pptoken.hpp>
-#include <spl/general/lfile.hpp>
-#include <spl/general/llocation.hpp>
+#include <general/pptoken.hpp>
+#include <general/lfile.hpp>
+#include <general/llocation.hpp>
 
 #include <deque>
 

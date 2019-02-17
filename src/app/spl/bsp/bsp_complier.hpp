@@ -15,10 +15,10 @@
 
 #include <barren/barren.hpp>
 
-#include <spl/bsp/lexical/types/bsp_barren.hpp>
+#include <bsp/lexical/types/bsp_barren.hpp>
 
-#include <spl/general/lfile.hpp>
-#include <spl/general/ldir.hpp>
+#include <general/lfile.hpp>
+#include <general/ldir.hpp>
 
 using namespace std;
 using namespace mind;

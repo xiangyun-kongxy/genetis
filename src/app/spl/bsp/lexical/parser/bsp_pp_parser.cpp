@@ -8,12 +8,12 @@
 
 #include "bsp_pp_parser.hpp"
 
-#include <spl/bsp/lexical/types/bsp_pp_keyword.hpp>
-#include <spl/bsp/lexical/types/bsp_pp_string.hpp>
-#include <spl/bsp/lexical/types/bsp_pp_number.hpp>
-#include <spl/bsp/lexical/types/bsp_pp_symbol.hpp>
-#include <spl/bsp/lexical/types/bsp_pp_op.hpp>
-#include <spl/bsp/lexical/types/bsp_pp_comment.hpp>
+#include <bsp/lexical/types/bsp_pp_keyword.hpp>
+#include <bsp/lexical/types/bsp_pp_string.hpp>
+#include <bsp/lexical/types/bsp_pp_number.hpp>
+#include <bsp/lexical/types/bsp_pp_symbol.hpp>
+#include <bsp/lexical/types/bsp_pp_op.hpp>
+#include <bsp/lexical/types/bsp_pp_comment.hpp>
 
 
 namespace spl {

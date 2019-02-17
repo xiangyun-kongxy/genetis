@@ -10,9 +10,9 @@
 
 #include <lib/fs/file_util.hpp>
 
-#include <spl/general/llocation.hpp>
-#include <spl/general/pptoken.hpp>
-#include <spl/bsp/lexical/parser/bsp_pp_parser.hpp>
+#include <general/llocation.hpp>
+#include <general/pptoken.hpp>
+#include <bsp/lexical/parser/bsp_pp_parser.hpp>
 
 #include <dirent.h>
 #include <iostream>

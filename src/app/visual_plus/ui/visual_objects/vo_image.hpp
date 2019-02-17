@@ -10,8 +10,11 @@ class vo_image : public visual_object {
 public:
     DECLARE_TYPE(visual_object, vo_image);
 public:
-    vo_image(string path, wxRect rect);
+    vo_image(ptr<vo_document> doc, const string& path, const wxRect& rect);
     ~vo_image();
+public:
+    virtual bool contain(const wxPoint& pos) override;
+
 public:
     virtual void on_draw(wxPaintDC* dc) override;
 protected:

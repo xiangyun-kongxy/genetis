@@ -1,5 +1,5 @@
 #include "vo_view.hpp"
-#include <visual_plus/ui/visual_object.hpp>
+#include <ui/visual_object.hpp>
 
 namespace vp {
 
@@ -28,8 +28,12 @@ void vo_view::on_mouse_event(wxMouseEvent& evt) {
         processor = get_mouse_processor(m_doc->get_dataobjects(), 
                 evt.GetPosition());
     }
-    if (processor == nullptr)
+    if (processor == nullptr) {
+        if (m_mouse_last_processor != nullptr)
+            m_mouse_last_processor->on_mouse_move_out(&evt);
+        m_mouse_last_processor = nullptr;
         return;
+    }
 
     if (evt.Moving() || evt.Dragging()) {
         if (m_mouse_last_processor != processor) {
@@ -61,7 +65,7 @@ void vo_view::on_draw(wxPaintEvent& evt) {
     wxRect area = GetClientRect();
     map<string, ptr<visual_object>>* objects = m_doc->get_dataobjects();
     for (pair<string, ptr<visual_object>> vo : *objects) {
-        if (area.Intersects(vo.second->get_rect())) {
+        if (area.Intersects(vo.second->rect())) {
             vo.second->on_draw(&dc);
         }
     }
@@ -89,6 +93,18 @@ void vo_view::release_key_event(ptr<visual_object> processor) {
 
 ptr<vo_document> vo_view::get_document() const {
     return m_doc;
+}
+
+static ptr<visual_object> get_mouse_processor(
+        const map<string, ptr<visual_object>>* vo, const wxPoint& pos) {
+    map<string, ptr<visual_object>>::const_iterator i;
+    for (i = vo->begin(); i != vo->end(); ++i) {
+        ptr<visual_object> obj = i->second;
+        if (obj->contain(pos)) {
+            return obj;
+        }
+    }
+    return nullptr;
 }
 
 }

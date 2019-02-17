@@ -7,7 +7,7 @@
 //
 
 #include "lsymbol.hpp"
-#include <spl/general/lscope.hpp>
+#include <general/lscope.hpp>
 
 namespace spl {
     

@@ -8,7 +8,7 @@
 
 #include "ldir.hpp"
 
-#include <spl/general/lfile.hpp>
+#include <general/lfile.hpp>
 
 namespace spl {
     

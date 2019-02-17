@@ -9,7 +9,7 @@
 #ifndef bsp_barren_h
 #define bsp_barren_h
 
-#include <spl/bsp/lexical/types/bsp_pp_symbol.hpp>
+#include <bsp/lexical/types/bsp_pp_symbol.hpp>
 
 namespace spl {
     namespace bsp {

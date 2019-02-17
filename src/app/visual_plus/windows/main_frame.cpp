@@ -1,5 +1,5 @@
 #include "main_frame.hpp"
-#include <visual_plus/ui/visual_objects/vo_image.hpp>
+#include <ui/visual_objects/vo_image.hpp>
 #include <lib/macro/warn.hpp>
 
 namespace vp {

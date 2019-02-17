@@ -5,10 +5,10 @@
 #include <map>
 #include <string>
 #include <lib/object/managed_object.hpp>
-#include <visual_plus/ui/visual_object.hpp>
-#include <visual_plus/action/cmd_history.hpp>
-#include <visual_plus/action/info/mouse_status.hpp>
-#include <visual_plus/action/info/keyboard_status.hpp>
+#include <ui/visual_object.hpp>
+#include <action/cmd_history.hpp>
+#include <action/info/mouse_status.hpp>
+#include <action/info/keyboard_status.hpp>
 
 using namespace kxy;
 using namespace std;

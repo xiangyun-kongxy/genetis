@@ -9,8 +9,8 @@
 #ifndef luser_type_hpp
 #define luser_type_hpp
 
-#include <spl/general/ltype.hpp>
-#include <spl/general/lscope.hpp>
+#include <general/ltype.hpp>
+#include <general/lscope.hpp>
 
 namespace spl {
     

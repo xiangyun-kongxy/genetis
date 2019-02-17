@@ -4,9 +4,9 @@
 #include "vo_status.hpp"
 #include "graph.hpp"
 #include <lib/object/managed_object.hpp>
-#include <visual_plus/arithmetic/layout/bounded/box_layout.hpp>
-#include <visual_plus/action/event_handler.hpp>
-#include <visual_plus/container/vo_document.hpp>
+#include <arithmetic/layout/bounded/box_layout.hpp>
+#include <action/event_handler.hpp>
+#include <container/vo_document.hpp>
 #include <map>
 
 using namespace std;
@@ -22,21 +22,24 @@ public:
     DECLARE_TYPE(managed_object, visual_object);
 
 public:
-    visual_object(const string& name, const wxRect& rect);
-    visual_object(const wxRect& rect);
-    virtual vo_creator get_creator() = 0;
+    visual_object(ptr<vo_document> doc, const string& name, const wxRect& rect);
+    visual_object(ptr<vo_document> doc, const wxRect& rect);
 
 public:
-    vo_status get_status() const;
-    void set_status(vo_status status);
+    wxRect rect();
+    virtual void set_placement(const wxRect& rect);
+
+    ptr<box_layout> get_layout();
+    void set_layout(ptr<box_layout> layout);
+
+    list<ptr<visual_object>> get_children();
 
     ptr<vo_document> get_document();
-    void set_document(ptr<vo_document> doc);
 
-protected:
-    vo_status m_status;
+private:
+    wxRect m_rect;
     ptr<vo_document> m_doc;
-    ptr<box_layout> m_children;
+    ptr<box_layout> m_layout;
 };
 
 } // namespace vp

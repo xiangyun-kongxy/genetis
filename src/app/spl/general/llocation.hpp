@@ -9,7 +9,7 @@
 #ifndef location_hpp
 #define location_hpp
 
-#include <spl/general/lfile.hpp>
+#include <general/lfile.hpp>
 
 namespace spl {
     

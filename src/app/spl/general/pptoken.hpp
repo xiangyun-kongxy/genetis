@@ -9,7 +9,7 @@
 #ifndef pptoken_hpp
 #define pptoken_hpp
 
-#include <spl/general/llocation.hpp>
+#include <general/llocation.hpp>
 
 #include <lib/object/object.hpp>
 

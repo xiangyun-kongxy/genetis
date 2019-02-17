@@ -2,7 +2,7 @@
 #define __frame_h__
 
 #include <string>
-#include <visual_plus/ui/visual_objects/vo_image.hpp>
+#include <ui/visual_objects/vo_image.hpp>
 
 using namespace std;
 

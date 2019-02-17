@@ -9,13 +9,7 @@ namespace vp {
 
 class graph {
 public:
-     graph(wxRect rect);
-
-     wxRect get_rect() const;
-     void set_rect(wxRect& rect);
-
-protected:
-     wxRect m_rect;
+     virtual bool contain(const wxPoint& pos) = 0;
 };
 
 }

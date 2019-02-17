@@ -2,13 +2,13 @@
 #define __view_hpp__
 
 #include <wx/wx.h>
-#include <visual_plus/container/vo_document.hpp>
-#include <visual_plus/ui/visual_object.hpp>
+#include <container/vo_document.hpp>
+#include <ui/visual_object.hpp>
 
 namespace vp
 {
 
-class vo_view : wxWindow {
+class vo_view : public wxWindow {
 public:
     vo_view(ptr<vo_document> doc, wxWindow* parent);
 

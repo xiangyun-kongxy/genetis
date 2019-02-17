@@ -16,7 +16,7 @@ uselibpath := -L/usr/local/lib
 endif
 endif
 
-CXXFLAGS = $(flagext) -fPIC -g -Wall -Werror -Wno-unused-private-field -Wno-unused-variable -Wno-sign-compare -Ithird_part/leveldb/include -Ithird_part/leveldb -Ithird_part/xml -Isrc/frame -Isrc -Isrc/app/mind -Isrc/include -Isrc/util -Isrc/app
+CXXFLAGS = $(flagext) -fPIC -g -Wall -Werror -Wno-unused-private-field -Wno-unused-variable -Wno-sign-compare -Ithird_part/leveldb/include -Ithird_part/leveldb -Ithird_part/xml -Isrc/frame -Isrc -Isrc/app/mind -Isrc/include -Isrc/util -Isrc/app/spl -Isrc/app/visual_plus
 LDFLAGS = -fPIC -L$(libout) $(uselibpath) $(uselib)
 CC = g++
 

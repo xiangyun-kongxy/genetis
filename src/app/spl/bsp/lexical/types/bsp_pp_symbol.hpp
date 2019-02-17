@@ -9,7 +9,7 @@
 #ifndef bsp_pp_symbol_h
 #define bsp_pp_symbol_h
 
-#include <spl/general/pptoken.hpp>
+#include <general/pptoken.hpp>
 
 namespace spl {
 namespace bsp {

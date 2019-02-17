@@ -1,12 +1,12 @@
 #include "app.hpp"
-#include <app/visual_plus/windows/main_frame.hpp>
-#include <app/visual_plus/windows/win_sash.hpp>
-#include <app/visual_plus/windows/win_explorer.hpp>
 #include <wx/sashwin.h>
 #include <wx/splitter.h>
-#include <visual_plus/windows/vo_view.hpp>
-#include <visual_plus/container/vo_document.hpp>
-#include <visual_plus/ui/visual_objects/vo_box.hpp>
+#include <windows/vo_view.hpp>
+#include <windows/main_frame.hpp>
+#include <container/vo_document.hpp>
+#include <ui/visual_objects/vo_box.hpp>
+#include <ui/visual_objects/vo_text_box.hpp>
+#include <ui/visual_objects/vo_title.hpp>
 
 IMPLEMENT_APP(app);
 
@@ -24,11 +24,15 @@ bool app::OnInit() {
     vo_view* view = new vo_view(doc, frame);
     doc->set_view(view);
 
-    ptr<vo_box> vb1 = new vo_box(wxRect(200, 100, 120, 40));
-    ptr<vo_box> vb2 = new vo_box(wxRect(400, 100, 120, 40));
+    ptr<vo_box> vb1 = new vo_box(doc, wxRect(200, 100, 120, 40));
+    ptr<vo_box> vb2 = new vo_box(doc, wxRect(400, 100, 120, 40));
+    ptr<vo_text_box> vtb1 = new vo_text_box(doc, "class1", wxRect(600, 100, 120, 20));
+    ptr<vo_image> vi1 = new vo_image(doc, "rc/app.jpg", wxRect(16, 16, 16, 16));
+    ptr<vo_title> vt1 = new vo_title(doc, wxRect(800, 100, 120, 32), vi1, vtb1);
     map<string, ptr<visual_object>>* vos = doc->get_dataobjects();
     (*vos)[vb1->name()] = vb1;
     (*vos)[vb2->name()] = vb2;
+    (*vos)[vt1->name()] = vt1;
 /*
     wxWindow* main = new wxWindow(frame, wxID_ANY);
     main->SetAutoLayout(true);

@@ -9,8 +9,8 @@
 #ifndef lscope_h
 #define lscope_h
 
-#include <spl/general/lsymbol.hpp>
-#include <spl/general/pptoken.hpp>
+#include <general/lsymbol.hpp>
+#include <general/pptoken.hpp>
 
 #include <map>
 #include <string>

@@ -1,7 +1,7 @@
 #include "vo_document.hpp"
 #include "content.hpp"
-#include <visual_plus/windows/vo_view.hpp>
-#include <visual_plus/ui/visual_object.hpp>
+#include <windows/vo_view.hpp>
+#include <ui/visual_object.hpp>
 
 namespace vp {
 
@@ -17,11 +17,11 @@ void vo_document::set_view(vo_view* view) {
     m_view = view;
 }
 
-vo_view* vo_document::get_view() const {
+vo_view* vo_document::get_view() {
     return m_view;
 }
 
-ptr<content> vo_document::get_content() const {
+ptr<content> vo_document::get_content() {
     return m_content;
 }
 

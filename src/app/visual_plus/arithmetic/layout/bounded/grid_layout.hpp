@@ -18,7 +18,7 @@ public:
     virtual void resize(int x, int y, int width, int height) override;
     virtual void add(ptr<visual_object> vo, int position) override;
     virtual void add(ptr<box_layout> box, int position) override;
-    virtual void add(wxWindow* win, int position) override;
+    virtual list<ptr<object>> get_objects() override;
     
 private: 
     void init_width(initializer_list<double> widths);
@@ -29,7 +29,6 @@ protected:
         double height;
         double width;
         ptr<object> obj;
-        wxWindow* win;
         wxRect real_rect;
     };
 

@@ -9,7 +9,7 @@
 #ifndef bsp_pp_comment_h
 #define bsp_pp_comment_h
 
-#include <spl/general/pptoken.hpp>
+#include <general/pptoken.hpp>
 
 namespace spl {
 namespace bsp {

@@ -23,9 +23,9 @@ public:
 
 public:
     void set_view(vo_view* view);
-    vo_view* get_view() const;
+    vo_view* get_view();
 
-    ptr<content> get_content() const;
+    ptr<content> get_content();
 
     map<string, ptr<visual_object>>* get_dataobjects();
 
