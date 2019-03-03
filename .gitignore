@@ -1,4 +1,6 @@
 .vscode/
+.vscode/c_cpp_properties.json
+.vscode/settings.json
 build/
 bin/
 .ycm_extra_conf.py
