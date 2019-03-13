@@ -8,8 +8,9 @@
                 "${workspaceFolder}/src",
                 "${workspaceFolder}/src/include",
                 "${workspaceFolder}/src/util",
-                "${workspaceFolder}/src/app",
-                "${workspaceFolder}/src/app/mind"
+                "${workspaceFolder}/src/app/spl",
+                "${workspaceFolder}/src/app/mind",
+                "${workspaceFolder}/src/app/visual_plus"
             ],
             "defines": ["_FILE_OFFSET_BITS", "WXUSINGDLL", "__WXMAC__", "__WXOSX__", "__WXOSX_COCOA__", "wxUSE_CONSTRAINTS"],
             "macFrameworkPath": [

@@ -1,5 +1,5 @@
 #include "grid_layout.hpp"
-#include <ui/visual_object.hpp>
+#include <visual_object/visual_object.hpp>
 
 namespace vp {
 grid_layout::grid_layout(int row, int column, 
@@ -97,10 +97,11 @@ void grid_layout::apply() {
 
             wxRect rect = m_grids[r][c].real_rect;
             if (m_grids[r][c].obj->is_kind_of("visual_object")) {
-                ((ptr<visual_object>)m_grids[r][c].obj)->set_placement(rect);
+                // ((ptr<visual_object>)m_grids[r][c].obj)->set_placement(rect);
             } else if (m_grids[r][c].obj->is_kind_of("box_layout")) {
-                ((ptr<box_layout>)m_grids[r][c].obj)->resize(rect.x, rect.y, rect.width, rect.height);
-                ((ptr<box_layout>)m_grids[r][c].obj)->apply();
+                ptr<box_layout> lay = (ptr<box_layout>) m_grids[r][c].obj;
+                lay->resize(rect.x, rect.y, rect.width, rect.height);
+                lay->apply();
             }
         }
     }
