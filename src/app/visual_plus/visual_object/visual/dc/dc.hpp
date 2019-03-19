@@ -8,15 +8,32 @@ using namespace kxy;
 
 namespace vp {
     
+class view;
+
 class dc : public object {
 public:
     DECLARE_TYPE(object, dc);
 public:
-    dc(wxWindow* win);
+    dc(view* win);
     virtual ~dc();
+
+public:
+    void draw_rect(int x, int y, int w, int h, int r);
+
+public:
+    int get_w();
+    int get_h();
+    void get_size(int& w, int& h);
+
+private:
+    void transform(int& x, int& y, int& w, int& h, int&r);
+    void transform(int& x, int& y, int& w, int& h);
+    void transform(int& x, int& y);
+    void transform(int& x, int& y, int&r);
 
 private:
     wxAutoBufferedPaintDC* m_dc;
+    view* m_view;
 };
 
 }

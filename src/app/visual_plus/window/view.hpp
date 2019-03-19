@@ -29,11 +29,20 @@ public:
 public:
     ptr<document> get_document() const;
 
+public:
+    int get_dx();
+    int get_dy();
+    double get_scale();
+
 protected:
     ptr<document> m_doc;
     ptr<visual_object> m_mouse_processor;
     ptr<visual_object> m_mouse_last_processor;
     ptr<visual_object> m_key_processor;
+
+    int m_x;
+    int m_y;
+    double m_scale;
 
 private:
     wxDECLARE_EVENT_TABLE();

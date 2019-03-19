@@ -17,7 +17,11 @@ static ptr<visual_object> get_mouse_processor(
 
 view::view(ptr<document> doc, wxWindow* parent) :
     wxWindow(parent, wxID_ANY) {
+    SetBackgroundStyle(wxBG_STYLE_PAINT);
     m_doc = doc;
+    m_x = 0;
+    m_y = 0;
+    m_scale = 1.0;
 }
 
 void view::on_mouse_event(wxMouseEvent& evt) {
@@ -27,7 +31,7 @@ void view::on_mouse_event(wxMouseEvent& evt) {
     if (m_mouse_processor != nullptr) 
         processor = m_mouse_processor;
     else {
-        processor = get_mouse_processor(m_doc->get_dataobjects(), 
+        processor = get_mouse_processor(m_doc->get_objects(), 
                 evt.GetPosition());
     }
     if (processor == nullptr) {
@@ -54,20 +58,29 @@ void view::on_mouse_event(wxMouseEvent& evt) {
     m_mouse_last_processor = processor;
 }
 void view::on_key_down(wxKeyEvent& evt) {
+    (void) evt;
 }
+
 void view::on_key_up(wxKeyEvent& evt) {
+    (void) evt;
 }
+
 void view::on_char(wxKeyEvent& evt) {
+    (void) evt;
 }
+
 void view::on_command(wxCommandEvent& evt) {
+    (void) evt;
 }
 
 void view::on_draw(wxPaintEvent& evt) {
+    (void) evt;
+
     ptr<dc> pdc = new dc(this);
-    wxRect area = GetClientRect();
-    map<string, ptr<visual_object>>* objects = m_doc->get_dataobjects();
+    // wxRect area = GetClientRect();
+    map<string, ptr<visual_object>>* objects = m_doc->get_objects();
     for (pair<string, ptr<visual_object>> vo : *objects) {
-            vo.second->on_draw(pdc);
+        vo.second->on_draw(pdc);
     }
 }
 
@@ -105,6 +118,18 @@ static ptr<visual_object> get_mouse_processor(
         }
     }
     return nullptr;
+}
+
+int view::get_dx() {
+    return m_x;
+}
+
+int view::get_dy() {
+    return m_y;
+}
+
+double view::get_scale() {
+    return m_scale;
 }
 
 }

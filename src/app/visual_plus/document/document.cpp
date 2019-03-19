@@ -19,8 +19,12 @@ view* document::get_view() {
     return m_view;
 }
 
-map<string, ptr<visual_object>>* document::get_dataobjects() {
+map<string, ptr<visual_object>>* document::get_objects() {
     return &m_objects;
+}
+
+void document::add_object(ptr<visual_object> obj) {
+    m_objects[obj->name()] = obj;
 }
 
 }

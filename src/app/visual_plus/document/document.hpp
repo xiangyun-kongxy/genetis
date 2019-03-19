@@ -24,7 +24,8 @@ public:
 public:
     void set_view(view* view);
     view* get_view();
-    map<string, ptr<visual_object>>* get_dataobjects();
+    map<string, ptr<visual_object>>* get_objects();
+    void add_object(ptr<visual_object> obj);
 
 protected:
     map<string, ptr<visual_object>> m_objects;

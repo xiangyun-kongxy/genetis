@@ -1,8 +1,7 @@
 #include "app.hpp"
-#include <wx/sashwin.h>
-#include <wx/splitter.h>
 #include <window/view.hpp>
 #include <document/document.hpp>
+#include <visual_object/instace/interface_bar.hpp>
 
 IMPLEMENT_APP(app);
 
@@ -19,6 +18,9 @@ bool app::OnInit() {
     ptr<document> doc = new document("unnamed");
     view* view = new class view(doc, frame);
     doc->set_view(view);
+
+    ptr<visual_object> v1 = new interface_bar("test", 200, 128);
+    doc->add_object(v1);
 
 /*
     wxWindow* main = new wxWindow(frame, wxID_ANY);
