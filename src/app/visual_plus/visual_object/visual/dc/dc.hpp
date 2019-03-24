@@ -26,12 +26,6 @@ public:
     void get_size(int& w, int& h);
 
 private:
-    void transform(int& x, int& y, int& w, int& h, int&r);
-    void transform(int& x, int& y, int& w, int& h);
-    void transform(int& x, int& y);
-    void transform(int& x, int& y, int&r);
-
-private:
     wxAutoBufferedPaintDC* m_dc;
     view* m_view;
 };

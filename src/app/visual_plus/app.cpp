@@ -19,7 +19,7 @@ bool app::OnInit() {
     view* view = new class view(doc, frame);
     doc->set_view(view);
 
-    ptr<visual_object> v1 = new interface_bar("test", 200, 128);
+    ptr<visual_object> v1 = new interface_bar(doc, "test", 200, 128);
     doc->add_object(v1);
 
 /*

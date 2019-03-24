@@ -3,6 +3,10 @@
 
 #include "command.hpp"
 #include <lib/object/object.hpp>
+#include <lib/object/ptr.hpp>
+#include <list>
+
+using namespace std;
 using namespace kxy;
 
 namespace vp {
