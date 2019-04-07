@@ -3,6 +3,7 @@
 
 #include <lib/object/object.hpp>
 #include <wx/dcbuffer.h>
+#include <wx/graphics.h>
 
 using namespace kxy;
 
@@ -19,7 +20,10 @@ public:
 
 public:
     void draw_rect(int x, int y, int w, int h, int r);
-
+public:
+    wxGraphicsContext* get_context();
+    void set_brush(wxBrush* brush);
+    void set_brush(wxGraphicsBrush* brush);
 public:
     int get_w();
     int get_h();

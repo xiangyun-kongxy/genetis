@@ -2,6 +2,7 @@
 #include <visual_object/visual/visual.hpp>
 #include <window/mouse_const.hpp>
 #include <lib/macro/warn.hpp>
+#include <action/impl/cmd_new_interface_bar.hpp>
 
 namespace vp {
 
@@ -27,6 +28,9 @@ view::view(ptr<document> doc, wxWindow* parent) :
     m_y = 0;
     m_scale = 1.0;
     ref();
+
+    ptr<command> cmd = new cmd_new_interface_bar(this);
+    register_menu_entry("new interface bar", "create new interface bar", cmd);
 }
 
 void view::register_menu_entry(const string& name, const string& help, 
@@ -40,6 +44,10 @@ void view::register_menu_entry(const string& name, const string& help,
 
 view::operator wxWindow*() {
     return dynamic_cast<wxWindow*>(this);
+}
+
+wxPoint view::get_mouse_pos() {
+    return m_mouse_rpos;
 }
 
 wxSize view::get_client_size() {
@@ -59,6 +67,10 @@ void view::on_menu(wxCommandEvent& evt) {
     ptr<command> cmd = m_menu_proc[id];
     if (cmd != nullptr) {
         cmd->perform();
+    } else {
+        char buf[32];
+        sprintf(buf, "menu %d not found.", id);
+        wxMessageBox(buf);
     }
 }
 

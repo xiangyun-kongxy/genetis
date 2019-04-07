@@ -20,7 +20,10 @@ public:
     }
 
     virtual void perform() override {
-        ptr<interface_bar> obj = new interface_bar(m_win->get_document(), "", 0, 0);
+        wxPoint pos = m_win->get_mouse_pos();
+        m_win->transform(pos.x, pos.y);
+        m_obj = new interface_bar(m_win->get_document(), "", pos.x, 64);
+        m_win->get_document()->add_object(m_obj);
     }
 
     virtual void undo() override {
@@ -29,6 +32,9 @@ public:
     virtual string to_string() override {
         return "#class@cmd_new_interface_bar";
     }
+
+public:
+    ptr<interface_bar> m_obj;
 };
 
 }

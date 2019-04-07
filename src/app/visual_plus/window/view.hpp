@@ -72,14 +72,15 @@ public:
     void register_menu_entry(const string& name, const string& help,
             ptr<command> proc);
 
+    wxPoint get_mouse_pos();
 public:
     int get_dx();
     int get_dy();
     double get_scale();
 
-    wxPoint m_mouse_rpos;
 protected:
     ptr<document> m_doc;
+
     ptr<visual> m_mouse_processor;
     ptr<visual> m_mouse_last_processor;
     ptr<visual> m_key_processor;
@@ -93,6 +94,7 @@ protected:
     int m_y;
     double m_scale;
 
+    wxPoint m_mouse_rpos;
 private:
     wxDECLARE_EVENT_TABLE();
 };

@@ -81,13 +81,13 @@ void interface_bar::on_destroy_other(ptr<pi_protocol> unused(obj)) {
 }
 
 void interface_bar::on_move(long dx, long unused(dy)) {
+    m_pos += dx;
+
     int x = 0, y = 0;
     m_doc->get_view()->rtransform(x, y);
     wxSize size = m_doc->get_view()->get_client_size();
     m_left->set_pos(m_pos, y + size.y / 2);
     m_right->set_pos(m_pos + m_size, y + size.y / 2);
-
-    m_pos += dx;
 }
 
 bool interface_bar::on_draw(ptr<dc> pdc) {
