@@ -94,8 +94,7 @@ void view::on_mouse_event(wxMouseEvent& evt) {
     }
 
     if (evt.GetWheelDelta() != 0) {
-        int inverted = evt.IsWheelInverted() ? -1 : 1;
-        int ds = inverted * evt.GetWheelDelta() / evt.GetWheelRotation();
+        int ds = evt.GetWheelDelta() / evt.GetWheelRotation();
         processor->on_mouse_wheel(pos.x, pos.y, ds, flag);
     } else if (evt.Moving() || evt.Dragging()) {
         processor->on_mouse_move(pos.x, pos.y, flag);

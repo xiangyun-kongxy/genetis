@@ -3,7 +3,7 @@ libout :=bin
 binout :=bin
 
 ifeq ($(shell uname), Linux)
-flagext := -DLEVELDB_PLATFORM_POSIX -I/usr/local/include/c++/6.4.0 -std=gnu++11 -I/usr/local/lib64/wx/include/gtk3-unicode-3.1 -I/usr/local/include/wx-3.1 -D_FILE_OFFSET_BITS=64 -DWXUSINGDLL -D__WXGTK__
+flagext := -DLEVELDB_PLATFORM_POSIX -I/usr/local/include/c++/6.4.0 -std=gnu++11 -I/usr/local/lib/wx/include/gtk3-unicode-3.1 -I/usr/local/lib64/wx/include/gtk3-unicode-3.1 -I/usr/local/include/wx-3.1 -D_FILE_OFFSET_BITS=64 -DWXUSINGDLL -D__WXGTK__
 libext :=so
 uselib :=-lpthread -luuid -ldl -pthread   -lwx_gtk3u_xrc-3.1 -lwx_gtk3u_html-3.1 -lwx_gtk3u_qa-3.1 -lwx_gtk3u_adv-3.1 -lwx_gtk3u_core-3.1 -lwx_baseu_xml-3.1 -lwx_baseu_net-3.1 -lwx_baseu-3.1
 uselibpath :=-L/usr/local/lib64 -L/usr/local/lib

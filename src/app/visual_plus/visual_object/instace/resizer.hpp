@@ -11,7 +11,7 @@ class visual_object_base;
 
 class resizer : public visual_object {
 public:
-    DECLARE_TYPE(visual_object, connector);
+    DECLARE_TYPE(visual_object, resizer);
 
 public:
     resizer(ptr<document> doc, ptr<visual_object_base> parent, int x, int y);

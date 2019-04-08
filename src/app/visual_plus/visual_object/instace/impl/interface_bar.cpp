@@ -55,8 +55,6 @@ void interface_bar::set_focus(bool focus) {
 }
 
 void interface_bar::resize(ptr<resizer> pr, int dx, int unused(dy)) {
-    int x = 0, y = 0;
-    
     if (pr == m_left) {
         if (m_size - dx <= 0) {
             m_pos += m_size - 1;
